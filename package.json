@@ -27,7 +27,7 @@
     "@wordpress/scripts": "^17.0.0"
   },
   "scripts": {
-    "build": "wp-scripts build ssrc/carousel/carousel.js src/carousel/carousel.view.js",
+    "build": "wp-scripts build src/carousel/carousel.js src/carousel/carousel.view.js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
     "lint:md:docs": "wp-scripts lint-md-docs",
