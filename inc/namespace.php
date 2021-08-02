@@ -38,6 +38,15 @@ function boostrap() {
 }
 
 /**
+ * Determines whether the current request is for an AMP document.
+ *
+ * @return bool Whether the current request is for an AMP document or not.
+ */
+function is_amp() {
+	return ( function_exists( '\amp_is_request' ) && \amp_is_request() );
+}
+
+/**
  * Registers the scripts and styles for Bento components.
  *
  * @return void
@@ -45,8 +54,9 @@ function boostrap() {
 function register_bento_components() {
 	wp_register_script( 'amp-runtime', 'https://cdn.ampproject.org/v0.js', array(), false );
 
-	wp_register_style( 'amp-bento-carousel', 'https://cdn.ampproject.org/v0/amp-base-carousel-1.0.css', array(), false );
 	wp_register_script( 'amp-bento-carousel', 'https://cdn.ampproject.org/v0/amp-base-carousel-1.0.js', array( 'amp-runtime' ), false );
+
+	wp_register_style( 'amp-bento-carousel', 'https://cdn.ampproject.org/v0/amp-base-carousel-1.0.css', array(), false );
 }
 
 /**
@@ -59,17 +69,23 @@ function register_carousel_block() {
 	$edit_asset        = is_readable( $edit_asset_file ) ? require $edit_asset_file : array();
 	$edit_dependencies = isset( $edit_asset['dependencies'] ) ? $edit_asset['dependencies'] : array();
 
-	$view_asset_file     = plugin_dir_path( __DIR__ ) . 'build/carousel.view.asset.php';
-	$view_asset          = is_readable( $view_asset_file ) ? require $view_asset_file : array();
-	$view_dependencies   = isset( $view_asset['dependencies'] ) ? $view_asset['dependencies'] : array();
-	$view_dependencies[] = 'amp-bento-carousel';
+	$view_asset_file   = plugin_dir_path( __DIR__ ) . 'build/carousel.view.asset.php';
+	$view_asset        = is_readable( $view_asset_file ) ? require $view_asset_file : array();
+	$view_dependencies = isset( $view_asset['dependencies'] ) ? $view_asset['dependencies'] : array();
+
+	$shared_dependencies = array();
+
+	if ( ! is_amp() ) {
+		$shared_dependencies[] = 'amp-bento-carousel';
+		$view_dependencies[]   = 'amp-bento-carousel';
+	}
 
 	// Both used only in editor.
 	wp_register_style( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.css', array(), $edit_asset['version'] );
 	wp_register_script( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.js', $edit_dependencies, $edit_asset['version'] );
 
 	// Used in editor + frontend.
-	wp_register_style( 'gutenberg-bento-carousel', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( 'amp-bento-carousel' ), $view_asset['version'] );
+	wp_register_style( 'gutenberg-bento-carousel', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', $shared_dependencies, $view_asset['version'] );
 
 	// Used only on frontend.
 	wp_register_script( 'gutenberg-bento-carousel-view', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.js', $view_dependencies, $view_asset['version'] );
@@ -101,12 +117,26 @@ function register_carousel_block_type() {
  * @return string
  */
 function render_carousel_block( $attributes, $content ) {
-	if ( ! wp_script_is( 'gutenberg-bento-carousel-view' ) && ! is_admin() ) {
+	static $instance_id = 0;
+
+	$carousel_id = 'wp-block-gutenberg-bento-carousel-' . ++$instance_id;
+
+	if ( ! wp_script_is( 'gutenberg-bento-carousel-view' ) && ! is_admin() && ! is_amp() ) {
 		wp_enqueue_script( 'gutenberg-bento-carousel-view' );
 	}
 
-	if ( ! wp_style_is( 'gutenberg-bento-carousel' ) && ! is_admin() ) {
-		wp_enqueue_style( 'gutenberg-bento-carousel' );
+	$content = str_replace( '<amp-base-carousel', "<amp-base-carousel id=\"$carousel_id\"", $content );
+
+	if ( is_amp() ) {
+		// Same 4:1 aspect ratio as in view.css.
+		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel layout="responsive" width="4" height="1"', $content );
+
+		// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="loop"`.
+		$content = str_replace( array( ' loop ', ' loop>' ), array( ' loop="true" ', ' loop="true">' ), $content );
+
+		// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
+		$content = str_replace( '"gutenberg-bento-carousel-buttons__prev"', "\"gutenberg-bento-carousel-buttons__prev\" on=\"tap:$carousel_id.prev()\"", $content );
+		$content = str_replace( '"gutenberg-bento-carousel-buttons__next"', "\"gutenberg-bento-carousel-buttons__next\" on=\"tap:$carousel_id.next()\"", $content );
 	}
 
 	if ( is_rtl() ) {

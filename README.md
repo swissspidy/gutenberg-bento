@@ -27,6 +27,13 @@ While this plugin is only a proof-of-concept, it gives a glimpse at the possibil
 3. Ensured feature parity between editor and frontend
 4. No interference by other plugins and themes thanks to web components.
 
+### AMP-first Sites
+
+An added bonus of the `<amp-base-carousel>` component is that it can be used on an AMP-first site with very little work.
+
+When using the official [AMP WordPress plugin](https://wordpress.org/plugins/amp/), all that's needed is to stop enqueuing the custom JavaScript & CSS for the component
+and use `amp-bind` (`on=""`) where custom functionality like going to the next/previous slide is needed.
+
 ### File Structure
 
 * `edit.js`: only used in the editor.
