@@ -7,23 +7,26 @@ import './view.css';
 	AMP.toggleExperiment( 'bento', true );
 } );
 
-const carousels = document.querySelectorAll(
-	'.gutenberg-bento-carousel-wrapper'
-);
-
-carousels.forEach( async ( carousel ) => {
-	const bentoComponent = carousel.querySelector( 'amp-base-carousel' );
+( async () => {
 	await window.customElements.whenDefined( 'amp-base-carousel' );
-	const api = await bentoComponent.getApi();
 
-	carousel
-		.querySelector( '.gutenberg-bento-carousel-buttons__prev' )
-		.addEventListener( 'click', () => {
-			api.prev();
-		} );
-	carousel
-		.querySelector( '.gutenberg-bento-carousel-buttons__next' )
-		.addEventListener( 'click', () => {
-			api.next();
-		} );
-} );
+	const carousels = document.querySelectorAll(
+		'.wp-block-gutenberg-bento-carousel'
+	);
+
+	for ( const carousel of carousels ) {
+		const bentoComponent = carousel.querySelector( 'amp-base-carousel' );
+		const api = await bentoComponent.getApi();
+
+		carousel
+			.querySelector( '.gutenberg-bento-carousel-buttons__prev' )
+			.addEventListener( 'click', () => {
+				api.prev();
+			} );
+		carousel
+			.querySelector( '.gutenberg-bento-carousel-buttons__next' )
+			.addEventListener( 'click', () => {
+				api.next();
+			} );
+	}
+} )();
