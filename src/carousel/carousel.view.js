@@ -10,6 +10,7 @@ import './view.css';
 const carousels = document.querySelectorAll(
 	'.gutenberg-bento-carousel-wrapper'
 );
+
 carousels.forEach( async ( carousel ) => {
 	const bentoComponent = carousel.querySelector( 'amp-base-carousel' );
 	await window.customElements.whenDefined( 'amp-base-carousel' );

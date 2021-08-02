@@ -20,6 +20,20 @@ removing the need for any duplication.
 
 Thanks to the encapsulation advantages of custom elements like `<amp-base-carousel>`, other WordPress plugins and themes can't interfere with its look & feel.
 
+While this plugin is only a proof-of-concept, it gives a glimpse at the possibilities of using Bento for Gutenberg block development, and the advantages that brings:
+
+1. Great user experience and page experience
+2. Reduced development and maintenance costs
+3. Ensured feature parity between editor and frontend
+4. No interference by other plugins and themes thanks to web components.
+
+### File Structure
+
+* `edit.js`: only used in the editor.
+* `edit.css`: only used in the editor
+* `carousel.view.js`: only used on the frontend.
+* `view.css`: used both on the frontend and in the editor.
+
 ## Screenshots
 
 The `<BaseCarousel>` carousel component in the editor:
@@ -42,20 +56,26 @@ To set up WordPress locally, you can use something like [Local](https://localwp.
 
 ## Known Issues / Notes / Questions
 
-### Using Module Version for React
+### Package Exports
 
-A Bento component's `package.json` file has `exports` entries for both `import` (ESM) and `require` (CommonJS).
-At the same time, the package contains a `react.js` file pointing to the CommonJS version.
-
-With this constellation, I haven't found a way to actually import the ESM version.
-
-So when importing the component like so, it will actually reference the `react.js` file and end up importing the CommonJS version:
+A Bento React component can be imported as follows:
 
 ```js
 import { BaseCarousel } from '@ampproject/amp-base-carousel/react';
 ```
 
-Aside: how can the `.max` version (i.e. the unminified version) be imported? Or what is it used for?
+The component's `package.json` file has `exports` entries for both `import` (ESM) and `require` (CommonJS).
+This is supported by modern build tooling such as webpack v5.
+
+At the same time, the package contains a `react.js` file pointing to the CommonJS version.
+This is done to make the above import work in older build tooling software such as webpack v4.
+
+So with webpack v4, the above import actually references the `react.js` file and ends up importing the CommonJS version.
+
+Unfortunately, the [`@wordpress/scripts`](https://npmjs.com/package/@wordpress/scripts) utility still uses webpack v4,
+which is why such workarounds like `react.js` are still necessary.
+
+As soon as the ecosystem begins to upgrade, the benefits of `exports` and ESM imports can be fully leveraged even in WordPress land.
 
 ### Lack of Type Definitions
 
