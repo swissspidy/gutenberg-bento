@@ -118,3 +118,14 @@ For the AMP-first version of this carousel block, a few modifications are needed
 * Modify the markup to fix the `loop` attribute. The AMP validator expects a value for this boolean flag, which React omits.
 
 There might be easier ways to do these modifications.
+
+## Next Steps
+
+Once the main issues reported on GitHub are resolved, this demo plugin can be updated accordingly to remove some of the workarounds it contains.
+
+Then, further experimentation could be done with Bento + Gutenberg with other Bento components.
+Especially since the list of [components in development](https://github.com/ampproject/amphtml/blob/main/build-system/compile/bundles.config.extensions.json) is growing,
+more and more use cases can be covered.
+
+In the near future, the Web Stories WordPress plugin is actually [a prime candidate](https://github.com/google/web-stories-wp/issues/8439) for converting to use Bento components.
+It uses a combination of custom lightbox and carousel scripts and uses `amp-lightbox` and `amp-carousel` for the AMP version. With Bento, only one version would need to be maintained.
