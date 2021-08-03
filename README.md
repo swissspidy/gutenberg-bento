@@ -90,6 +90,13 @@ As soon as the ecosystem begins to upgrade, the benefits of `exports` and ESM im
 
 Having some type definitions or even just keeping inline documentation in the npm package would help improve developer experience. 
 
+### Lack of Changelog / Documentation
+
+Every time a new AMP version is released, new versions of the npm packages are tagged as well, even if there were actually no changes to the component.
+
+For this reason, it would be very helpful to maintain a changelog for each package in its `README`. There could also be some basic usage examples in there
+to make usage easier.
+
 ### Missing CSS
 
 [GitHub issue](https://github.com/ampproject/amphtml/issues/35413)
