@@ -101,3 +101,13 @@ As a workaround, the repository contains some manually copied CSS for use with t
 ### React Fragments broken
 
 Originally reported in this [GitHub issue](https://github.com/ampproject/amphtml/issues/35412), this bug has since been fixed. 🎉
+
+### AMP Validation
+
+For the AMP-first version of this carousel block, a few modifications are needed to ensure AMP validation:
+
+* Prevent enqueueing CSS & JS for the Bento component. The AMP plugin handles this.
+* Modify the custom Previous/Next buttons to use `amp-bind`
+* Modify the markup to fix the `loop` attribute. The AMP validator expects a value for this boolean flag, which React omits.
+
+There might be easier ways to do these modifications.
