@@ -71,7 +71,7 @@ class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
 			 * @var \DOMElement $next_button
 			 */
 			$next_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $carousel )->item( 0 );
-			$next_button->setAttribute( 'on', "tap:$carousel_id.nexr()" );
+			$next_button->setAttribute( 'on', "tap:$carousel_id.next()" );
 		}
 	}
 }
