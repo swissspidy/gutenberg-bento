@@ -29,7 +29,6 @@ namespace Google\Gutenberg_Bento;
 use WP_Block_Type_Registry;
 use WP_Block_Type;
 use AmpProject\Extension;
-use WP_Dependencies;
 
 const AMP_RUNTIME_SCRIPT_HANDLE = 'amp-runtime';
 const BASE_CAROUSEL_VERSION     = '1.0';
