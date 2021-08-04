@@ -35,15 +35,8 @@ function boostrap() {
 	add_action( 'init', __NAMESPACE__ . '\register_bento_components' );
 	add_action( 'init', __NAMESPACE__ . '\register_carousel_block' );
 	add_action( 'init', __NAMESPACE__ . '\register_carousel_block_type' );
-}
 
-/**
- * Determines whether the current request is for an AMP document.
- *
- * @return bool Whether the current request is for an AMP document or not.
- */
-function is_amp() {
-	return ( function_exists( '\amp_is_request' ) && \amp_is_request() );
+	add_filter( 'amp_content_sanitizers', __NAMESPACE__ . '\add_amp_content_sanitizer' );
 }
 
 /**
@@ -108,40 +101,52 @@ function register_carousel_block_type() {
 /**
  * Render callback for the carousel block.
  *
- * Enqueues scripts and styles needed on the frontend
- * and adds the `dir` HTML attribute if in RTL.
+ * Enqueues scripts needed on the frontend,
+ * adds a unique ID for each instance, and
+ * adds the `dir` HTML attribute if in RTL.
  *
  * @param array  $attributes Block attributes.
  * @param string $content Block content.
  *
- * @return string
+ * @return string Block content.
  */
 function render_carousel_block( $attributes, $content ) {
 	static $instance_id = 0;
-
-	$carousel_id = 'wp-block-gutenberg-bento-carousel-' . ++$instance_id;
 
 	if ( ! wp_script_is( 'gutenberg-bento-carousel-view' ) && ! is_admin() && ! is_amp() ) {
 		wp_enqueue_script( 'gutenberg-bento-carousel-view' );
 	}
 
-	$content = str_replace( '<amp-base-carousel', "<amp-base-carousel id=\"$carousel_id\"", $content );
-
-	if ( is_amp() ) {
-		// Same 4:1 aspect ratio as in view.css.
-		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel layout="responsive" width="4" height="1"', $content );
-
-		// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="true"`.
-		$content = str_replace( array( ' loop ', ' loop>' ), array( ' loop="true" ', ' loop="true">' ), $content );
-
-		// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
-		$content = str_replace( '"gutenberg-bento-carousel-buttons__prev"', "\"gutenberg-bento-carousel-buttons__prev\" on=\"tap:$carousel_id.prev()\"", $content );
-		$content = str_replace( '"gutenberg-bento-carousel-buttons__next"', "\"gutenberg-bento-carousel-buttons__next\" on=\"tap:$carousel_id.next()\"", $content );
-	}
+	$carousel_id = 'wp-block-gutenberg-bento-carousel-' . ++$instance_id;
+	$content     = str_replace( '<amp-base-carousel', "<amp-base-carousel id=\"$carousel_id\"", $content );
 
 	if ( is_rtl() ) {
 		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel dir="rtl"', $content );
 	}
 
 	return $content;
+}
+
+/**
+ * Determines whether the current request is for an AMP document.
+ *
+ * @return bool Whether the current request is for an AMP document or not.
+ */
+function is_amp() {
+	return ( function_exists( '\amp_is_request' ) && \amp_is_request() );
+}
+
+/**
+ * Adds a new AMP sanitizer for the <amp-base-carousel> to ensure validity.
+ *
+ * @param array $sanitizers List of sanitizers.
+ *
+ * @return array Filtered list of sanitizers.
+ */
+function add_amp_content_sanitizer( $sanitizers ) {
+	require_once __DIR__ . '/class-amp-carousel-sanitizer.php';
+
+	$sanitizers[ AMP_Carousel_Sanitizer::class ] = array();
+
+	return $sanitizers;
 }
