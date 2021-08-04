@@ -56,7 +56,7 @@ class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
 				$carousel->setAttribute( 'loop', 'true' );
 			}
 
-			$carousel_id = $this->dom->getElementId( $carousel );
+			$carousel_id = $this->dom->getElementId( $carousel, 'wp-block-gutenberg-bento-carousel' );
 
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
 
