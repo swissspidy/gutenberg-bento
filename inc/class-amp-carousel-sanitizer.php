@@ -26,10 +26,13 @@
 
 namespace Google\Gutenberg_Bento;
 
+use AmpProject\Dom\Element;
+
 /**
  * Class AMP_Carousel_Sanitizer.
  */
 class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
+
 	/**
 	 * Sanitize the HTML contained in the DOMDocument received by the constructor.
 	 *
@@ -38,9 +41,7 @@ class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
 	public function sanitize() {
 		$carousels = $this->dom->getElementsByTagName( 'amp-base-carousel' );
 
-		/*
-		 * @var \DOMElement $carousel
-		 */
+		/** @var Element $carousel */
 		foreach ( $carousels as $carousel ) {
 			if ( ! $carousel->hasAttribute( 'class' ) || ! $carousel->getAttribute( 'class' ) ) {
 				continue;
@@ -57,19 +58,15 @@ class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
 				$carousel->setAttribute( 'loop', 'true' );
 			}
 
-			$carousel_id = $carousel->getAttribute( 'id' );
+			$carousel_id = $this->dom->getElementId( $carousel );
 
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
 
-			/*
-			 * @var \DOMElement $prev_button
-			 */
+			/** @var Element $prev_button */
 			$prev_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $carousel )->item( 0 );
 			$prev_button->setAttribute( 'on', "tap:$carousel_id.prev()" );
 
-			/*
-			 * @var \DOMElement $next_button
-			 */
+			/** @var Element $next_button */
 			$next_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $carousel )->item( 0 );
 			$next_button->setAttribute( 'on', "tap:$carousel_id.next()" );
 		}

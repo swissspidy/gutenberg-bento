@@ -111,14 +111,9 @@ function register_carousel_block_type() {
  * @return string Block content.
  */
 function render_carousel_block( $attributes, $content ) {
-	static $instance_id = 0;
-
 	if ( ! wp_script_is( 'gutenberg-bento-carousel-view' ) && ! is_admin() && ! is_amp() ) {
 		wp_enqueue_script( 'gutenberg-bento-carousel-view' );
 	}
-
-	$carousel_id = 'wp-block-gutenberg-bento-carousel-' . ++$instance_id;
-	$content     = str_replace( '<amp-base-carousel', "<amp-base-carousel id=\"$carousel_id\"", $content );
 
 	if ( is_rtl() ) {
 		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel dir="rtl"', $content );
