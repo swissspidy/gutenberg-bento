@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { __ } from "@wordpress/i18n";
 
 export default function save( { attributes } ) {
 	const { images, autoAdvance, loop, snap } = attributes;
@@ -53,10 +54,10 @@ export default function save( { attributes } ) {
 			</amp-base-carousel>
 			<div className="gutenberg-bento-carousel-buttons">
 				<button role="button" className="gutenberg-bento-carousel-buttons__prev">
-					Previous
+					{ __( 'Previous', 'gutenberg-bento' ) }
 				</button>
 				<button role="button" className="gutenberg-bento-carousel-buttons__next">
-					Next
+					{ __( 'Next', 'gutenberg-bento' ) }
 				</button>
 			</div>
 		</figure>

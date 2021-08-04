@@ -222,14 +222,14 @@ function CarouselEdit( props ) {
 						className="gutenberg-bento-carousel-buttons__prev"
 						onClick={ goToPreviousSlide }
 					>
-						Previous
+						{ __( 'Previous', 'gutenberg-bento' ) }
 					</Button>
 					<Button
 						isSecondary
 						className="gutenberg-bento-carousel-buttons__next"
 						onClick={ goToNextSlide }
 					>
-						Next
+						{ __( 'Next', 'gutenberg-bento' ) }
 					</Button>
 				</div>
 			</figure>
