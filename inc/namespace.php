@@ -131,7 +131,7 @@ function render_carousel_block( $attributes, $content ) {
 		// Same 4:1 aspect ratio as in view.css.
 		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel layout="responsive" width="4" height="1"', $content );
 
-		// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="loop"`.
+		// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="true"`.
 		$content = str_replace( array( ' loop ', ' loop>' ), array( ' loop="true" ', ' loop="true">' ), $content );
 
 		// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
