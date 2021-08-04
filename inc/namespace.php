@@ -26,6 +26,9 @@
 
 namespace Google\Gutenberg_Bento;
 
+use WP_Block_Type_Registry;
+use WP_Block_Type;
+
 /**
  * Bootstraps the plugin.
  *
@@ -35,7 +38,7 @@ function boostrap() {
 	add_action( 'init', __NAMESPACE__ . '\register_bento_components' );
 	add_action( 'init', __NAMESPACE__ . '\register_carousel_block_assets' );
 	add_action( 'init', __NAMESPACE__ . '\register_carousel_block_type' );
-	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\register_asset_dependencies' );
+	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\register_asset_dependencies', 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 
 	add_filter( 'amp_content_sanitizers', __NAMESPACE__ . '\add_amp_content_sanitizer' );
 }
@@ -86,7 +89,13 @@ function register_carousel_block_assets() {
  * @return void
  */
 function register_asset_dependencies() {
-	if ( ! is_amp() ) {
+	if ( is_amp() ) {
+		// Prevent the view script from being enqueued on AMP pages, since it will be added automatically by the AMP plugin.
+		$block_type = WP_Block_Type_Registry::get_instance()->get_registered( 'gutenberg-bento/carousel' );
+		if ( $block_type instanceof WP_Block_Type ) {
+			$block_type->script = null;
+		}
+	} else {
 		wp_scripts()->registered['gutenberg-bento-carousel-view']->deps[] = 'amp-bento-carousel';
 		wp_styles()->registered['gutenberg-bento-carousel']->deps[]       = 'amp-bento-carousel';
 	}
@@ -109,9 +118,7 @@ function register_carousel_block_type() {
 /**
  * Render callback for the carousel block.
  *
- * Enqueues scripts needed on the frontend,
- * adds a unique ID for each instance, and
- * adds the `dir` HTML attribute if in RTL.
+ * Adds the `dir` HTML attribute if in RTL.
  *
  * @param array  $attributes Block attributes.
  * @param string $content Block content.
@@ -119,10 +126,6 @@ function register_carousel_block_type() {
  * @return string Block content.
  */
 function render_carousel_block( $attributes, $content ) {
-	if ( ! wp_script_is( 'gutenberg-bento-carousel-view' ) && ! is_admin() && ! is_amp() ) {
-		wp_enqueue_script( 'gutenberg-bento-carousel-view' );
-	}
-
 	if ( is_rtl() ) {
 		$content = str_replace( '<amp-base-carousel', '<amp-base-carousel dir="rtl"', $content );
 	}

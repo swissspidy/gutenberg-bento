@@ -67,8 +67,8 @@
 	"supports": {
 		"align": true
 	},
-	"viewScript": "gutenberg-bento-carousel-view",
 	"editorScript": "gutenberg-bento-carousel-edit",
 	"editorStyle": "gutenberg-bento-carousel-edit",
+	"script": "gutenberg-bento-carousel-view",
 	"style": "gutenberg-bento-carousel"
 }
