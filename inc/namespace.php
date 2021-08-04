@@ -28,10 +28,10 @@ namespace Google\Gutenberg_Bento;
 
 use WP_Block_Type_Registry;
 use WP_Block_Type;
-use AmpProject\Extension;
 
-const AMP_RUNTIME_SCRIPT_HANDLE = 'amp-runtime';
-const BASE_CAROUSEL_VERSION     = '1.0';
+const AMP_RUNTIME_SCRIPT_HANDLE   = 'amp-runtime';
+const BASE_CAROUSEL_SCRIPT_HANDLE = 'amp-base-carousel';
+const BASE_CAROUSEL_VERSION       = '1.0';
 
 // @todo Maybe these should be obtained from block.json directly?
 const BLOCK_NAME               = 'gutenberg-bento/carousel';
@@ -67,22 +67,22 @@ function register_bento_assets() {
 
 	// Note that amp-runtime will not eventually be a dependency for Bento.
 	$src    = sprintf( 'https://cdn.ampproject.org/v0/amp-base-carousel-%s.js', BASE_CAROUSEL_VERSION );
-	$script = wp_scripts()->query( Extension::BASE_CAROUSEL );
+	$script = wp_scripts()->query( BASE_CAROUSEL_SCRIPT_HANDLE );
 	if ( $script ) {
 		// Make sure that 1.0 (Bento) is used instead of 0.1 (latest).
 		$script->src = $src;
 	} else {
-		wp_register_script( Extension::BASE_CAROUSEL, $src, array( AMP_RUNTIME_SCRIPT_HANDLE ), null, false );
+		wp_register_script( BASE_CAROUSEL_SCRIPT_HANDLE, $src, array( AMP_RUNTIME_SCRIPT_HANDLE ), null, false );
 	}
 
 	// At the moment the AMP plugin does not register styles for Bento components, but this could change with <https://github.com/ampproject/amp-wp/pull/6353>.
 	$src   = sprintf( 'https://cdn.ampproject.org/v0/amp-base-carousel-%s.css', BASE_CAROUSEL_VERSION );
-	$style = wp_styles()->query( Extension::BASE_CAROUSEL );
+	$style = wp_styles()->query( BASE_CAROUSEL_SCRIPT_HANDLE );
 	if ( $style ) {
 		// Make sure that 1.0 (Bento) is used instead of 0.1 (latest).
 		$style->src = $src;
 	} else {
-		wp_register_style( Extension::BASE_CAROUSEL, $src, array(), null, false );
+		wp_register_style( BASE_CAROUSEL_SCRIPT_HANDLE, $src, array(), null, false );
 	}
 }
 
@@ -99,14 +99,14 @@ function register_carousel_block_assets() {
 	$view_asset_file     = plugin_dir_path( __DIR__ ) . 'build/carousel.view.asset.php';
 	$view_asset          = is_readable( $view_asset_file ) ? require $view_asset_file : array();
 	$view_dependencies   = isset( $view_asset['dependencies'] ) ? $view_asset['dependencies'] : array();
-	$view_dependencies[] = Extension::BASE_CAROUSEL;
+	$view_dependencies[] = BASE_CAROUSEL_SCRIPT_HANDLE;
 
 	// Both used only in editor.
 	wp_register_style( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.css', array(), $edit_asset['version'] );
 	wp_register_script( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.js', $edit_dependencies, $edit_asset['version'] );
 
 	// Used in editor + frontend.
-	wp_register_style( BLOCK_VIEW_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( Extension::BASE_CAROUSEL ), $view_asset['version'] );
+	wp_register_style( BLOCK_VIEW_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( BASE_CAROUSEL_SCRIPT_HANDLE ), $view_asset['version'] );
 
 	// Used only on frontend.
 	wp_register_script( BLOCK_VIEW_SCRIPT_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.js', $view_dependencies, $view_asset['version'] );
@@ -132,11 +132,11 @@ function unregister_asset_dependencies_on_amp() {
 	// Remove script/style dependencies which AMP will handle.
 	$view_script = wp_scripts()->query( BLOCK_VIEW_SCRIPT_HANDLE );
 	if ( $view_script ) {
-		$view_script->deps = array_diff( $view_script->deps, [ Extension::BASE_CAROUSEL ] );
+		$view_script->deps = array_diff( $view_script->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
 	}
 	$style = wp_styles()->query( BLOCK_VIEW_STYLE_HANDLE );
 	if ( $style ) {
-		$style->deps = array_diff( $view_script->deps, [ Extension::BASE_CAROUSEL ] );
+		$style->deps = array_diff( $view_script->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
 	}
 }
 
