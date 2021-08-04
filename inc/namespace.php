@@ -124,13 +124,14 @@ function unregister_asset_dependencies_on_amp() {
 		$block_type->script = null;
 	}
 
-	// Prevent the script and style from being printed on AMP pages since AMP handles these automatically.
-	foreach ( array( wp_scripts(), wp_styles() ) as $dependencies ) {
-		/** @var WP_Dependencies $dependencies */
-		$dependency = $dependencies->query( Extension::BASE_CAROUSEL );
-		if ( $dependency ) {
-			$dependency->src = false;
-		}
+	// Remove script/style dependencies which AMP will handle.
+	$view_script = wp_scripts()->query( 'gutenberg-bento-carousel-view' );
+	if ( $view_script ) {
+		$view_script->deps = array_diff( $view_script->deps, [ Extension::BASE_CAROUSEL ] );
+	}
+	$style = wp_styles()->query( 'gutenberg-bento-carousel' );
+	if ( $style ) {
+		$style->deps = array_diff( $view_script->deps, [ Extension::BASE_CAROUSEL ] );
 	}
 }
 
