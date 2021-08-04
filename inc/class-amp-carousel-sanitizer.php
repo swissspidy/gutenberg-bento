@@ -28,11 +28,12 @@ namespace Google\Gutenberg_Bento;
 
 use AmpProject\Dom\Element;
 use AmpProject\Attribute;
+use AMP_Base_Sanitizer;
 
 /**
  * Class AMP_Carousel_Sanitizer.
  */
-class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
+class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 
 	/**
 	 * Sanitize the HTML contained in the DOMDocument received by the constructor.
