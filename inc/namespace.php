@@ -136,7 +136,7 @@ function unregister_asset_dependencies_on_amp() {
 	}
 	$style = wp_styles()->query( BLOCK_VIEW_STYLE_HANDLE );
 	if ( $style ) {
-		$style->deps = array_diff( $view_script->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
+		$style->deps = array_diff( $style->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
 	}
 }
 
