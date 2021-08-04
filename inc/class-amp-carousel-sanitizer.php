@@ -39,14 +39,12 @@ class AMP_Carousel_Sanitizer extends \AMP_Base_Sanitizer {
 	 * @return void
 	 */
 	public function sanitize() {
-		$carousels = $this->dom->getElementsByTagName( 'amp-base-carousel' );
+		$carousels = $this->dom->xpath->query(
+			'//figure[ contains( @class, "wp-block-gutenberg-bento-carousel" ) ]/amp-base-carousel[ contains( @class, "gutenberg-bento-carousel-wrapper" ) ]'
+		);
 
 		/** @var Element $carousel */
 		foreach ( $carousels as $carousel ) {
-			if ( ! $carousel->hasAttribute( 'class' ) || ! $carousel->getAttribute( 'class' ) ) {
-				continue;
-			}
-
 			$carousel->setAttribute( 'layout', 'responsive' );
 
 			// Same 4:1 aspect ratio as in view.css.
