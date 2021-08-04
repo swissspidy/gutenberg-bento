@@ -52,10 +52,10 @@ export default function save( { attributes } ) {
 				} ) }
 			</amp-base-carousel>
 			<div className="gutenberg-bento-carousel-buttons">
-				<button className="gutenberg-bento-carousel-buttons__prev">
+				<button role="button" className="gutenberg-bento-carousel-buttons__prev">
 					Previous
 				</button>
-				<button className="gutenberg-bento-carousel-buttons__next">
+				<button role="button" className="gutenberg-bento-carousel-buttons__next">
 					Next
 				</button>
 			</div>
