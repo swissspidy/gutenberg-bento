@@ -12,21 +12,21 @@
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" value="preferred-languages" />
+			<property name="text_domain" value="gutenberg-bento" />
 		</properties>
 	</rule>
 
 	<!-- Make sure we prefix everything in the global namespace. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="preferred_languages" />
+			<property name="prefixes" type="array" value="gutenberg_bento" />
 		</properties>
 	</rule>
 
 	<!-- We only support the latest major WordPress release. -->
 	<rule ref="WordPress.WP.DeprecatedFunctions">
 		<properties>
-			<property name="minimum_supported_version" value="5.3" />
+			<property name="minimum_supported_version" value="5.8" />
 		</properties>
 	</rule>
 
