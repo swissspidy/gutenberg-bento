@@ -19,7 +19,8 @@ import './edit.css';
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 const PLACEHOLDER_TEXT = __(
-	'Drag images, upload new ones or select files from your library.'
+	'Drag images, upload new ones or select files from your library.',
+	'gutenberg-bento'
 );
 
 function CarouselEdit( props ) {
@@ -108,7 +109,7 @@ function CarouselEdit( props ) {
 			isAppender={ hasImages }
 			disableMediaButtons={ hasImages && ! isSelected }
 			labels={ {
-				title: ! hasImages && __( 'Carousel' ),
+				title: ! hasImages && __( 'Carousel', 'gutenberg-bento' ),
 				instructions: ! hasImages && PLACEHOLDER_TEXT,
 			} }
 			onSelect={ onSelectImages }
@@ -221,14 +222,14 @@ function CarouselEdit( props ) {
 						className="gutenberg-bento-carousel-buttons__prev"
 						onClick={ goToPreviousSlide }
 					>
-						Previous
+						{ __( 'Previous', 'gutenberg-bento' ) }
 					</Button>
 					<Button
 						isSecondary
 						className="gutenberg-bento-carousel-buttons__next"
 						onClick={ goToNextSlide }
 					>
-						Next
+						{ __( 'Next', 'gutenberg-bento' ) }
 					</Button>
 				</div>
 			</figure>
