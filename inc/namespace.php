@@ -34,8 +34,7 @@ const BASE_CAROUSEL_SCRIPT_HANDLE = 'amp-base-carousel';
 const BASE_CAROUSEL_VERSION       = '1.0';
 
 // @todo Maybe these should be obtained from block.json directly?
-const BLOCK_NAME               = 'gutenberg-bento/carousel';
-const BLOCK_VIEW_STYLE_HANDLE  = 'gutenberg-bento-carousel';
+const BLOCK_STYLE_HANDLE       = 'gutenberg-bento-carousel';
 const BLOCK_VIEW_SCRIPT_HANDLE = 'gutenberg-bento-carousel-view';
 
 /**
@@ -65,7 +64,7 @@ function register_bento_assets() {
 		wp_register_script( AMP_RUNTIME_SCRIPT_HANDLE, 'https://cdn.ampproject.org/v0.js', array(), null );
 	}
 
-	// Note that amp-runtime will not eventually be a dependency for Bento.
+	// Note that amp-runtime will eventually not be a dependency for Bento.
 	$src    = sprintf( 'https://cdn.ampproject.org/v0/amp-base-carousel-%s.js', BASE_CAROUSEL_VERSION );
 	$script = wp_scripts()->query( BASE_CAROUSEL_SCRIPT_HANDLE );
 	if ( $script ) {
@@ -106,7 +105,7 @@ function register_carousel_block_assets() {
 	wp_register_script( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.js', $edit_dependencies, $edit_asset['version'] );
 
 	// Used in editor + frontend.
-	wp_register_style( BLOCK_VIEW_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( BASE_CAROUSEL_SCRIPT_HANDLE ), $view_asset['version'] );
+	wp_register_style( BLOCK_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( BASE_CAROUSEL_SCRIPT_HANDLE ), $view_asset['version'] );
 
 	// Used only on frontend.
 	wp_register_script( BLOCK_VIEW_SCRIPT_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.js', $view_dependencies, $view_asset['version'] );
@@ -123,18 +122,7 @@ function unregister_asset_dependencies_on_amp() {
 		return;
 	}
 
-	// Prevent the view script from being enqueued on AMP pages, since it will be added automatically by the AMP plugin.
-	$block_type = WP_Block_Type_Registry::get_instance()->get_registered( BLOCK_NAME );
-	if ( $block_type instanceof WP_Block_Type ) {
-		$block_type->script = null;
-	}
-
-	// Remove script/style dependencies which AMP will handle.
-	$view_script = wp_scripts()->query( BLOCK_VIEW_SCRIPT_HANDLE );
-	if ( $view_script ) {
-		$view_script->deps = array_diff( $view_script->deps, array( BASE_CAROUSEL_SCRIPT_HANDLE ) );
-	}
-	$style = wp_styles()->query( BLOCK_VIEW_STYLE_HANDLE );
+	$style = wp_styles()->query( BLOCK_STYLE_HANDLE );
 	if ( $style ) {
 		$style->deps = array_diff( $style->deps, array( BASE_CAROUSEL_SCRIPT_HANDLE ) );
 	}
