@@ -132,11 +132,11 @@ function unregister_asset_dependencies_on_amp() {
 	// Remove script/style dependencies which AMP will handle.
 	$view_script = wp_scripts()->query( BLOCK_VIEW_SCRIPT_HANDLE );
 	if ( $view_script ) {
-		$view_script->deps = array_diff( $view_script->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
+		$view_script->deps = array_diff( $view_script->deps, array( BASE_CAROUSEL_SCRIPT_HANDLE ) );
 	}
 	$style = wp_styles()->query( BLOCK_VIEW_STYLE_HANDLE );
 	if ( $style ) {
-		$style->deps = array_diff( $style->deps, [ BASE_CAROUSEL_SCRIPT_HANDLE ] );
+		$style->deps = array_diff( $style->deps, array( BASE_CAROUSEL_SCRIPT_HANDLE ) );
 	}
 }
 
