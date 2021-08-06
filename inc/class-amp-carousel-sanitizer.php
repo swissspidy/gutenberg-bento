@@ -45,7 +45,7 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 			'//figure[ contains( @class, "wp-block-gutenberg-bento-carousel" ) ]/amp-base-carousel[ contains( @class, "gutenberg-bento-carousel-wrapper" ) ]'
 		);
 
-		/** @var Element $carousel */
+		/* @var Element $carousel */
 		foreach ( $carousels as $carousel ) {
 			$carousel->setAttribute( Attribute::LAYOUT, 'responsive' );
 
