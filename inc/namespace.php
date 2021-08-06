@@ -49,10 +49,6 @@ function boostrap() {
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\unregister_asset_dependencies_on_amp', 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 
 	add_filter( 'amp_content_sanitizers', __NAMESPACE__ . '\add_amp_content_sanitizer' );
-
-	// Debugging
-	// See https://github.com/ampproject/amphtml/issues/35485
-	add_filter( 'amp_enable_ssr', '__return_false' );
 }
 
 /**
