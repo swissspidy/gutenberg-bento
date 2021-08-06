@@ -93,22 +93,24 @@ function register_bento_assets() {
 function register_carousel_block_assets() {
 	$edit_asset_file   = plugin_dir_path( __DIR__ ) . 'build/carousel.asset.php';
 	$edit_asset        = is_readable( $edit_asset_file ) ? require $edit_asset_file : array();
+	$edit_version      = isset( $edit_asset['version'] ) ? $edit_asset['version'] : false;
 	$edit_dependencies = isset( $edit_asset['dependencies'] ) ? $edit_asset['dependencies'] : array();
 
 	$view_asset_file     = plugin_dir_path( __DIR__ ) . 'build/carousel.view.asset.php';
 	$view_asset          = is_readable( $view_asset_file ) ? require $view_asset_file : array();
+	$view_version        = isset( $view_asset['version'] ) ? $view_asset['version'] : false;
 	$view_dependencies   = isset( $view_asset['dependencies'] ) ? $view_asset['dependencies'] : array();
 	$view_dependencies[] = BASE_CAROUSEL_SCRIPT_HANDLE;
 
 	// Both used only in editor.
-	wp_register_style( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.css', array(), $edit_asset['version'] );
-	wp_register_script( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.js', $edit_dependencies, $edit_asset['version'] );
+	wp_register_style( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.css', array(), $edit_version );
+	wp_register_script( 'gutenberg-bento-carousel-edit', plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.js', $edit_dependencies, $edit_version );
 
 	// Used in editor + frontend.
-	wp_register_style( BLOCK_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( BASE_CAROUSEL_SCRIPT_HANDLE ), $view_asset['version'] );
+	wp_register_style( BLOCK_STYLE_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.css', array( BASE_CAROUSEL_SCRIPT_HANDLE ), $view_version );
 
 	// Used only on frontend.
-	wp_register_script( BLOCK_VIEW_SCRIPT_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.js', $view_dependencies, $view_asset['version'] );
+	wp_register_script( BLOCK_VIEW_SCRIPT_HANDLE, plugins_url( basename( dirname( __DIR__ ) ) ) . '/build/carousel.view.js', $view_dependencies, $view_version );
 }
 
 /**
@@ -182,9 +184,11 @@ function is_amp() {
  * @return array Filtered list of sanitizers.
  */
 function add_amp_content_sanitizer( $sanitizers ) {
-	require_once __DIR__ . '/class-amp-carousel-sanitizer.php';
+	if ( class_exists( '\AMP_Base_Sanitizer' ) ) {
+		require_once __DIR__ . '/class-amp-carousel-sanitizer.php';
 
-	$sanitizers[ AMP_Carousel_Sanitizer::class ] = array();
+		$sanitizers[ AMP_Carousel_Sanitizer::class ] = array();
+	}
 
 	return $sanitizers;
 }
