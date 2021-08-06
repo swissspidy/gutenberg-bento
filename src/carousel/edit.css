@@ -1,10 +1,11 @@
 /* This CSS is only used in the editor. */
 
 /*
-The following CSS is manually copied from https://github.com/ampproject/amphtml/blob/main/extensions/amp-base-carousel/1.0/component.jss.js
-
-TODO: Ensure JSS / CSS is actually available in the npm package and just consume from there.
+ * The following CSS is manually copied from AMP.
+ * See https://github.com/ampproject/amphtml/issues/35413
  */
+
+/* stylelint-disable */
 
 .carousel-f3d75e0 {
 	overscroll-behavior: contain;
@@ -214,3 +215,5 @@ TODO: Ensure JSS / CSS is actually available in the npm package and just consume
 	height: 24px;
 	position: relative;
 }
+
+/* stylelint-enable */

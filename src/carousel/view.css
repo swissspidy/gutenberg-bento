@@ -1,6 +1,7 @@
 /* This CSS is used both on the frontend and in the editor. */
 
-.gutenberg-bento-carousel-wrapper, .gutenberg-bento-carousel-wrapper > div {
+.gutenberg-bento-carousel-wrapper,
+.gutenberg-bento-carousel-wrapper > div {
 	aspect-ratio: 4/1;
 }
 
