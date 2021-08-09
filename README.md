@@ -61,7 +61,17 @@ The same carousel powered by `<amp-base-carousel>` on the frontend:
 
 To set up WordPress locally, you can use something like [Local](https://localwp.com/).
 
-## Known Issues / Notes / Questions
+## Known Issues
+
+* React Fragments broken (ampproject/amphtml#35412) (**fixed**)
+* React warnings about incorrect DOM attributes / unrecognized props (ampproject/amphtml#35553)
+* Cannot use loop as boolean attribute for amp-base-carousel (ampproject/amphtml#35555)
+* npm packages not shipping with CSS (ampproject/amphtml#35413)
+* Lack of type definitions (ampproject/amphtml#34206)
+* Lack of changelog / documentation
+* Custom element versions not shipped via npm (ampproject/amphtml#35554)
+
+## Notes
 
 ### Package Exports
 
@@ -83,49 +93,3 @@ Unfortunately, the [`@wordpress/scripts`](https://npmjs.com/package/@wordpress/s
 which is why such workarounds like `react.js` are still necessary.
 
 As soon as the ecosystem begins to upgrade, the benefits of `exports` and ESM imports can be fully leveraged even in WordPress land.
-
-### Lack of Type Definitions
-
-[GitHub issue](https://github.com/ampproject/amphtml/issues/34206)
-
-Having some type definitions or even just keeping inline documentation in the npm package would help improve developer experience. 
-
-### Lack of Changelog / Documentation
-
-Every time a new AMP version is released, new versions of the npm packages are tagged as well, even if there were actually no changes to the component.
-
-For this reason, it would be very helpful to maintain a changelog for each package in its `README`. There could also be some basic usage examples in there
-to make usage easier.
-
-### Missing CSS
-
-[GitHub issue](https://github.com/ampproject/amphtml/issues/35413)
-
-Bento uses [JSS](https://cssinjs.org/) for stylesheets, but the compiled React components only contain the class names, not the actual CSS.
-
-As a workaround, the repository contains some manually copied CSS for use with the React component.
-
-### React Fragments broken
-
-Originally reported in this [GitHub issue](https://github.com/ampproject/amphtml/issues/35412), this bug has since been fixed. 🎉
-
-### AMP Validation
-
-For the AMP-first version of this carousel block, a few modifications are needed to ensure AMP validation:
-
-* Prevent enqueueing CSS & JS for the Bento component. The AMP plugin handles this.
-* Modify the custom Previous/Next buttons to use `amp-bind`
-* Modify the markup to fix the `loop` attribute. The AMP validator expects a value for this boolean flag, which React omits.
-
-There might be easier ways to do these modifications.
-
-## Next Steps
-
-Once the main issues reported on GitHub are resolved, this demo plugin can be updated accordingly to remove some of the workarounds it contains.
-
-Then, further experimentation could be done with Bento + Gutenberg with other Bento components.
-Especially since the list of [components in development](https://github.com/ampproject/amphtml/blob/main/build-system/compile/bundles.config.extensions.json) is growing,
-more and more use cases can be covered.
-
-In the near future, the Web Stories WordPress plugin is actually [a prime candidate](https://github.com/google/web-stories-wp/issues/8439) for converting to use Bento components.
-It uses a combination of custom lightbox and carousel scripts and uses `amp-lightbox` and `amp-carousel` for the AMP version. With Bento, only one version would need to be maintained.
