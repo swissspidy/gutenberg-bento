@@ -65,15 +65,12 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 			$wrapper = $carousel->parentNode;
 
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
-
-			// FIXME: Why is this matching relative to $wrapper?
-			$prev_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $wrapper )->item( 0 );
+			$prev_button = $this->dom->xpath->query( './/button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $wrapper )->item( 0 );
 			if ( $prev_button instanceof Element ) {
 				$prev_button->setAttribute( Attribute::ON, "tap:$carousel_id.prev()" );
 			}
 
-			// FIXME: Why is this matching relative to $wrapper?
-			$next_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $wrapper )->item( 0 );
+			$next_button = $this->dom->xpath->query( './/button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $wrapper )->item( 0 );
 			if ( $next_button instanceof Element ) {
 				$next_button->setAttribute( Attribute::ON, "tap:$carousel_id.next()" );
 			}
