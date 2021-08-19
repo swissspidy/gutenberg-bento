@@ -54,20 +54,26 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 			$carousel->setAttribute( Attribute::HEIGHT, '1' );
 
 			// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="true"`.
+			// See https://github.com/ampproject/amphtml/issues/35555.
 			if ( $carousel->hasAttribute( Attribute::LOOP ) ) {
 				$carousel->setAttribute( Attribute::LOOP, 'true' );
 			}
 
 			$carousel_id = $this->dom->getElementId( $carousel, 'wp-block-gutenberg-bento-carousel' );
 
+			// $carousel is the <amp-base-carousel> itself, whereas $wrapper is the parent containing both the carousel and the buttons.
+			$wrapper = $carousel->parentNode;
+
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
 
-			$prev_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $carousel )->item( 0 );
+			// FIXME: Why is this matching relative to $wrapper?
+			$prev_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $wrapper )->item( 0 );
 			if ( $prev_button instanceof Element ) {
 				$prev_button->setAttribute( Attribute::ON, "tap:$carousel_id.prev()" );
 			}
 
-			$next_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $carousel )->item( 0 );
+			// FIXME: Why is this matching relative to $wrapper?
+			$next_button = $this->dom->xpath->query( '//button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $wrapper )->item( 0 );
 			if ( $next_button instanceof Element ) {
 				$next_button->setAttribute( Attribute::ON, "tap:$carousel_id.next()" );
 			}
