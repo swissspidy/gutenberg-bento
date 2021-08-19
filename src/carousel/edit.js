@@ -1,4 +1,5 @@
 import { BaseCarousel } from '@ampproject/amp-base-carousel/react';
+import '@ampproject/amp-base-carousel/dist/styles.css';
 
 import { useEffect, useCallback, useRef } from '@wordpress/element';
 import {
@@ -14,7 +15,6 @@ import { useSelect } from '@wordpress/data';
 import { View } from '@wordpress/primitives';
 import { getBlobByURL, isBlobURL, revokeBlobURL } from '@wordpress/blob';
 
-import './edit.css';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
