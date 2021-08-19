@@ -15,7 +15,6 @@ import { useSelect } from '@wordpress/data';
 import { View } from '@wordpress/primitives';
 import { getBlobByURL, isBlobURL, revokeBlobURL } from '@wordpress/blob';
 
-
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 const PLACEHOLDER_TEXT = __(
