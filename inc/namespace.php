@@ -48,6 +48,7 @@ function boostrap() {
 	add_action( 'init', __NAMESPACE__ . '\register_carousel_block_type' );
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\unregister_asset_dependencies_on_amp', 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 
+	add_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\filter_kses_allowed_html' );
 	add_filter( 'amp_content_sanitizers', __NAMESPACE__ . '\add_amp_content_sanitizer' );
 }
 
@@ -83,6 +84,30 @@ function register_bento_assets() {
 	} else {
 		wp_register_style( BASE_CAROUSEL_SCRIPT_HANDLE, $src, array(), null, false );
 	}
+}
+
+/**
+ * Filter Kses-allowed HTML.
+ *
+ * Prevent custom element from being removed if user cannot do unfiltered_html.
+ *
+ * @param array $tags Tags.
+ * @return array Filtered tags.
+ */
+function filter_kses_allowed_html( $tags ) {
+	$tags['amp-base-carousel'] = array_merge(
+		isset( $tags['amp-base-carousel'] ) ? $tags['amp-base-carousel'] : array(),
+		array_fill_keys(
+			array(
+				'class',
+				'auto-advance',
+				'loop',
+				'snap',
+			),
+			true
+		)
+	);
+	return $tags;
 }
 
 /**
