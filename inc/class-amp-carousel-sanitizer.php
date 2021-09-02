@@ -53,12 +53,6 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 			$carousel->setAttribute( Attribute::WIDTH, '4' );
 			$carousel->setAttribute( Attribute::HEIGHT, '1' );
 
-			// React saves `loop={ true }` always as boolean flag `loop`, but AMP does not allow this. It expects `loop="true"`.
-			// See https://github.com/ampproject/amphtml/issues/35555.
-			if ( $carousel->hasAttribute( Attribute::LOOP ) ) {
-				$carousel->setAttribute( Attribute::LOOP, 'true' );
-			}
-
 			$carousel_id = $this->dom->getElementId( $carousel, 'wp-block-gutenberg-bento-carousel' );
 
 			// $carousel is the <amp-base-carousel> itself, whereas $wrapper is the parent containing both the carousel and the buttons.
