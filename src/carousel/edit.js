@@ -1,4 +1,4 @@
-import { BaseCarousel } from '@ampproject/amp-base-carousel/react';
+import { BentoBaseCarousel } from '@ampproject/amp-base-carousel/react';
 import '@ampproject/amp-base-carousel/dist/styles.css';
 
 import { useEffect, useCallback, useRef } from '@wordpress/element';
@@ -167,7 +167,7 @@ function CarouselEdit(props) {
 				</PanelBody>
 			</InspectorControls>
 			<figure {...blockProps}>
-				<BaseCarousel
+				<BentoBaseCarousel
 					ref={carouselRef}
 					className="gutenberg-bento-carousel-wrapper"
 					dir={isRTL() ? 'rtl' : 'ltr'}
@@ -209,7 +209,7 @@ function CarouselEdit(props) {
 							</div>
 						);
 					})}
-				</BaseCarousel>
+				</BentoBaseCarousel>
 				<div className="gutenberg-bento-carousel-buttons">
 					<Button
 						isSecondary
