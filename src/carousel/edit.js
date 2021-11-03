@@ -1,5 +1,5 @@
 import { BentoBaseCarousel } from '@ampproject/amp-base-carousel/react';
-import '@ampproject/amp-base-carousel/dist/styles.css';
+import '@ampproject/amp-base-carousel/styles.css';
 
 import { useEffect, useCallback, useRef } from '@wordpress/element';
 import {
@@ -167,49 +167,50 @@ function CarouselEdit(props) {
 				</PanelBody>
 			</InspectorControls>
 			<figure {...blockProps}>
-				<BentoBaseCarousel
-					ref={carouselRef}
-					className="gutenberg-bento-carousel-wrapper"
-					dir={isRTL() ? 'rtl' : 'ltr'}
-					autoAdvance={autoAdvance}
-					loop={loop}
-					snap={snap}
-				>
-					{images.map((image) => {
-						let href;
+				<div className="gutenberg-bento-carousel-wrapper">
+					<BentoBaseCarousel
+						ref={carouselRef}
+						dir={isRTL() ? 'rtl' : 'ltr'}
+						autoAdvance={autoAdvance}
+						loop={loop}
+						snap={snap}
+					>
+						{images.map((image) => {
+							let href;
 
-						const img = (
-							<img
-								src={image.url}
-								alt={image.alt}
-								data-id={image.id}
-								data-full-url={image.fullUrl}
-								data-link={image.link}
-								className={
-									image.id ? `wp-image-${image.id}` : null
-								}
-							/>
-						);
+							const img = (
+								<img
+									src={image.url}
+									alt={image.alt}
+									data-id={image.id}
+									data-full-url={image.fullUrl}
+									data-link={image.link}
+									className={
+										image.id ? `wp-image-${image.id}` : null
+									}
+								/>
+							);
 
-						return (
-							<div
-								key={image.id || image.url}
-								className="gutenberg-bento-carousel-item"
-							>
-								<figure>
-									{href ? <a href={href}>{img}</a> : img}
-									{!RichText.isEmpty(image.caption) && (
-										<RichText.Content
-											tagName="figcaption"
-											className="gutenberg-bento-carousel-item__caption"
-											value={image.caption}
-										/>
-									)}
-								</figure>
-							</div>
-						);
-					})}
-				</BentoBaseCarousel>
+							return (
+								<div
+									key={image.id || image.url}
+									className="gutenberg-bento-carousel-item"
+								>
+									<figure>
+										{href ? <a href={href}>{img}</a> : img}
+										{!RichText.isEmpty(image.caption) && (
+											<RichText.Content
+												tagName="figcaption"
+												className="gutenberg-bento-carousel-item__caption"
+												value={image.caption}
+											/>
+										)}
+									</figure>
+								</div>
+							);
+						})}
+					</BentoBaseCarousel>
+				</div>
 				<div className="gutenberg-bento-carousel-buttons">
 					<Button
 						isSecondary
