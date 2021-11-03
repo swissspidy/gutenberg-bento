@@ -11,7 +11,7 @@ export default function save({ attributes }) {
 
 	return (
 		<figure {...useBlockProps.save()}>
-			<amp-base-carousel
+			<bento-base-carousel
 				className={className}
 				auto-advance={autoAdvance ? 'true' : undefined}
 				loop={loop ? 'true' : undefined}
@@ -49,7 +49,7 @@ export default function save({ attributes }) {
 						</div>
 					);
 				})}
-			</amp-base-carousel>
+			</bento-base-carousel>
 			<div className="gutenberg-bento-carousel-buttons">
 				<button className="gutenberg-bento-carousel-buttons__prev">
 					{__('Previous', 'gutenberg-bento')}

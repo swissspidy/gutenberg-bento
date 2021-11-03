@@ -42,7 +42,7 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	public function sanitize() {
 		$carousels = $this->dom->xpath->query(
-			'//figure[ contains( @class, "wp-block-gutenberg-bento-carousel" ) ]/amp-base-carousel[ contains( @class, "gutenberg-bento-carousel-wrapper" ) ]'
+			'//figure[ contains( @class, "wp-block-gutenberg-bento-carousel" ) ]/bento-base-carousel[ contains( @class, "gutenberg-bento-carousel-wrapper" ) ]'
 		);
 
 		/* @var Element $carousel */
@@ -55,7 +55,7 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 
 			$carousel_id = $this->dom->getElementId( $carousel, 'wp-block-gutenberg-bento-carousel' );
 
-			// $carousel is the <amp-base-carousel> itself, whereas $wrapper is the parent containing both the carousel and the buttons.
+			// $carousel is the <bento-base-carousel> itself, whereas $wrapper is the parent containing both the carousel and the buttons.
 			$wrapper = $carousel->parentNode;
 
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
