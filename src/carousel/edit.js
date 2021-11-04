@@ -1,5 +1,5 @@
-import { BentoBaseCarousel } from '@ampproject/amp-base-carousel/react';
-import '@ampproject/amp-base-carousel/styles.css';
+import { BentoBaseCarousel } from '@bentoproject/base-carousel/react';
+import '@bentoproject/base-carousel/styles.css';
 
 import { useEffect, useCallback, useRef } from '@wordpress/element';
 import {

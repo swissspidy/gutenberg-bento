@@ -83,7 +83,7 @@ If you prefer self-hosting the assets, you can use the `gutenberg_bento_self_hos
 A Bento React component can be imported as follows:
 
 ```js
-import { BaseCarousel } from '@ampproject/bento-base-carousel/react';
+import { BaseCarousel } from '@bentoproject/base-carousel/react';
 ```
 
 The component's `package.json` file has `exports` entries for both `import` (ESM) and `require` (CommonJS).
