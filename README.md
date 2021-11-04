@@ -5,12 +5,12 @@ An exploratory plugin for using [Bento components](https://amp.dev/documentation
 ## Background
 
 Bento offers well-tested, cross-browser compatible and accessible web components (aka custom elements) that can be used on any website.
-Bento components are designed to be highly performant and contribute to an excellent page experience. They power [AMP](https://amp.dev/) under the hood as well, but they can be used independent of AMP.
+Bento components are highly performant and contribute to an excellent page experience. They power [AMP](https://amp.dev/) under the hood as well, but they can be used independent of AMP.
 
 These components are not only available as custom elements, but also as React and Preact components with the same features and API.
 That makes them an ideal candidate for use in the React-based Gutenberg editor.
 
-Typically, with Gutenberg one has to write a block's Edit component in React and then replicate the same look and feel for the frontend without React, causing a lot of duplicate work and additional maintenance burden.
+Typically, with Gutenberg one has to write a block's Edit component in React and then replicate the same look and feel for the frontend without React. This causes a lot of duplicate work and additional maintenance burden.
 With Bento this is no longer a problem.
 
 ## About this Plugin
@@ -27,20 +27,24 @@ While this plugin is only a proof-of-concept, it gives a glimpse at the possibil
 3. Ensured feature parity between editor and frontend
 4. No interference by other plugins and themes, thanks to web components.
 
-### AMP-first Sites
+### AMP
 
-An added bonus of the `<bento-base-carousel>` component is that it can be used on an AMP-first site with very little work.
+Bento components build the foundation of [AMP](https://amp.dev/), but can be used standalone as well.
+
+Because of that interoperability, an added bonus of components like `<bento-base-carousel>` is that they can be used on an AMP-first site with very little work.
 
 When using the official [AMP WordPress plugin](https://wordpress.org/plugins/amp/), all that's needed is to stop enqueuing the custom JavaScript & CSS for the component
 and use `amp-bind` (`on=""`) where custom functionality like going to the next/previous slide is needed.
 
+This plugin makes use of exactly that to give you a better understanding of how this works.
+
 ### File Structure
 
-* `edit.js`: only used in the editor.
-* `edit.css`: only used in the editor
-* `carousel.view.js`: only used on the frontend.
-* `view.css`: used both on the frontend and in the editor.
-* `bento-base-carousel.js`: used when wanting to self-host the Bento scripts and styles.
+* `edit.js` - only used in the editor.
+* `edit.css` - only used in the editor
+* `carousel.view.js` - only used on the frontend.
+* `view.css` - used both on the frontend and in the editor.
+* `bento-base-carousel.js` - used when wanting to self-host the Bento scripts and styles.
 
 ## Screenshots
 
