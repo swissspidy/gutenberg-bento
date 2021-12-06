@@ -27,7 +27,6 @@
 namespace Google\Gutenberg_Bento;
 
 use AmpProject\Dom\Element;
-use AmpProject\Attribute;
 use AMP_Base_Sanitizer;
 
 /**
@@ -47,11 +46,11 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 
 		/* @var Element $carousel */
 		foreach ( $carousels as $carousel ) {
-			$carousel->setAttribute( Attribute::LAYOUT, 'responsive' );
+			$carousel->setAttribute( 'layout', 'responsive' );
 
 			// Same 4:1 aspect ratio as in view.css.
-			$carousel->setAttribute( Attribute::WIDTH, '4' );
-			$carousel->setAttribute( Attribute::HEIGHT, '1' );
+			$carousel->setAttribute( 'width', '4' );
+			$carousel->setAttribute( 'height', '1' );
 
 			$carousel_id = $this->dom->getElementId( $carousel, 'wp-block-gutenberg-bento-carousel' );
 
@@ -61,12 +60,12 @@ class AMP_Carousel_Sanitizer extends AMP_Base_Sanitizer {
 			// Allow controlling the carousel using amp-bind similar to how carousel.view.js does.
 			$prev_button = $this->dom->xpath->query( './/button[ contains( @class, "gutenberg-bento-carousel-buttons__prev" ) ]', $wrapper )->item( 0 );
 			if ( $prev_button instanceof Element ) {
-				$prev_button->setAttribute( Attribute::ON, "tap:$carousel_id.prev()" );
+				$prev_button->addAmpAction( 'tap', "$carousel_id.prev()" );
 			}
 
 			$next_button = $this->dom->xpath->query( './/button[ contains( @class, "gutenberg-bento-carousel-buttons__next" ) ]', $wrapper )->item( 0 );
 			if ( $next_button instanceof Element ) {
-				$next_button->setAttribute( Attribute::ON, "tap:$carousel_id.next()" );
+				$next_button->addAmpAction( 'tap', "$carousel_id.next()" );
 			}
 		}
 	}
