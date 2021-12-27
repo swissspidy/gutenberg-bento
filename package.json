@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/swissspidy/gutenberg-bento#readme",
   "dependencies": {
-    "@bentoproject/base-carousel": "^1.2112102136.0",
+    "@bentoproject/base-carousel": "^1.2112231523.0",
     "@wordpress/blob": "^3.2.0",
     "@wordpress/block-editor": "^8.0.0",
     "@wordpress/blocks": "^11.1.0",
