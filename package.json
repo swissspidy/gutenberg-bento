@@ -19,7 +19,7 @@
     "@wordpress/blocks": "^11.1.0",
     "@wordpress/components": "^19.2.0",
     "@wordpress/data": "^6.0.0",
-    "@wordpress/element": "^4.0.0",
+    "@wordpress/element": "^4.1.0",
     "@wordpress/i18n": "^4.2.0",
     "@wordpress/primitives": "^3.0.0"
   },
