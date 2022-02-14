@@ -24,7 +24,7 @@
     "@wordpress/primitives": "^3.1.0"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^20.0.2"
+    "@wordpress/scripts": "^21.0.1"
   },
   "scripts": {
     "build": "wp-scripts build src/carousel/bento-base-carousel.js src/carousel/carousel.js src/carousel/carousel.view.js",
