@@ -183,7 +183,7 @@ function unregister_asset_dependencies_on_amp() {
  */
 function register_carousel_block_type() {
 	register_block_type(
-		plugin_dir_path( __DIR__ ) . 'block.json',
+		plugin_dir_path( __DIR__ ) . './src/carousel/block.json',
 		array(
 			'render_callback' => __NAMESPACE__ . '\render_carousel_block',
 		)
