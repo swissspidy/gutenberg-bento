@@ -1,36 +1,36 @@
 {
-  "name": "swissspidy/gutenberg-bento",
-  "type": "wordpress-plugin",
-  "description": "An exploratory plugin for using Bento components in Gutenberg",
-  "license": "Apache-2.0",
-  "authors": [
-    {
-      "name": "Pascal Birchler",
-      "email": "pascalb@google.com",
-      "homepage": "https://pascalbirchler.com",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php": ">=5.6.20",
-    "ext-json": "*"
-  },
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.0",
+	"name": "swissspidy/gutenberg-bento",
+	"type": "wordpress-plugin",
+	"description": "An exploratory plugin for using Bento components in Gutenberg",
+	"license": "Apache-2.0",
+	"authors": [
+		{
+			"name": "Pascal Birchler",
+			"email": "pascalb@google.com",
+			"homepage": "https://pascalbirchler.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.6.20",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.0",
 		"roave/security-advisories": "dev-latest",
-    "wp-coding-standards/wpcs": "^2.1",
+		"wp-coding-standards/wpcs": "^2.1",
 		"yoast/phpunit-polyfills": "^1.0.0"
-  },
-  "config": {
-    "platform": {
-      "php": "5.6.20"
-    }
-  },
-  "scripts": {
-    "format": "vendor/bin/phpcbf --report-summary --report-source .",
-    "lint": "vendor/bin/phpcs --report-summary --report-source .",
-    "test": "vendor/bin/phpunit",
-    "test:multisite": "vendor/bin/phpunit -c phpunit-multisite.xml.dist"
-  }
+	},
+	"config": {
+		"platform": {
+			"php": "5.6.20"
+		}
+	},
+	"scripts": {
+		"format": "vendor/bin/phpcbf --report-summary --report-source .",
+		"lint": "vendor/bin/phpcs --report-summary --report-source .",
+		"test": "vendor/bin/phpunit",
+		"test:multisite": "vendor/bin/phpunit -c phpunit-multisite.xml.dist"
+	}
 }
