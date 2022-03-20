@@ -2,27 +2,13 @@
 
 .gutenberg-bento-carousel-wrapper,
 .gutenberg-bento-carousel-wrapper > div {
-	aspect-ratio: 4/1;
-}
-
-.gutenberg-bento-carousel-item {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-.gutenberg-bento-carousel-item > figure {
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	width: 100%;
-}
-
-.gutenberg-bento-carousel-item > figure > img {
-	width: 100%;
-	height: auto;
+	aspect-ratio: 2/1;
 }
 
 .gutenberg-bento-carousel-buttons {
 	margin-top: 20px;
+}
+
+[class*="scroll-container"][class*="horizontal-scroll"] {
+	align-items: flex-start;
 }

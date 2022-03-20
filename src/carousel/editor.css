@@ -1,0 +1,32 @@
+/* This CSS is used only in the editor. */
+
+/**
+ The contain CSS property allows an author to indicate that an element
+ and its contents are, as much as possible, independent of the rest of
+ the document tree:
+
+ https://developer.mozilla.org/en-US/docs/Web/CSS/contain
+
+ The `strict` value provided by Bento causes it to not render in the
+ block editor, presumably due to how rich the editable block content is.
+
+ Let's disable it:
+ */
+.gutenberg-bento-carousel-wrapper > .block-editor-block-list__layout > [class^="carousel-"] {
+	contain: content !important;
+}
+
+/*
+ Now the carousel is unconstrained in terms of height. Let's use
+ overflow: hidden to work around the lack of `contain: content` above.
+ */
+.gutenberg-bento-carousel-wrapper,
+.gutenberg-bento-carousel-wrapper > div {
+	overflow: hidden;
+}
+
+.gutenberg-bento-carousel .wp-block-image {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
