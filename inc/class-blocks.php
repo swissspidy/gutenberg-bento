@@ -136,9 +136,6 @@ class Blocks {
 			$block_type = new $classname();
 			$block_type->register();
 		}
-
-//		var_dump(\WP_Block_Type_Registry::get_instance()->get_registered('gutenberg-bento/date-countdown'));
-
 	}
 
 	/**
