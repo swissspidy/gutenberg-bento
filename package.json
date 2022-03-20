@@ -34,6 +34,7 @@
 	"scripts": {
 		"build": "wp-scripts build",
 		"format": "wp-scripts format",
+		"format:php": "composer format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"lint:md:docs": "wp-scripts lint-md-docs",
