@@ -103,7 +103,7 @@ class Carousel_Block_Type {
 	 */
 	public function register_carousel_block_type() {
 		register_block_type(
-			GUTENBERG_BENTO_BLOCKS_ABSPATH . '/build/carousel/block.json',
+			GUTENBERG_BENTO_BLOCKS_ABSPATH . 'build/carousel/block.json',
 			array(
 				'render_callback' => array( $this, 'render_carousel_block' ),
 			)
