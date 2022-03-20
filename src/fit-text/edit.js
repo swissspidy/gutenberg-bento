@@ -14,13 +14,20 @@ import {
 	__experimentalUnitControl as UnitControl,
 	ResizableBox,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
+
+import './edit.css';
 
 function FitTextEdit(props) {
-	const { attributes } = props;
-	const { fittedText, minFontSize, maxFontSize } = attributes;
+	const { attributes, setAttributes } = props;
+	const { fittedText, minFontSize, maxFontSize, height = 200 } = attributes;
 
-	const [height, setHeight] = useState(200);
+	const [localHeight, setLocalHeight] = useState(height);
+
+	useEffect(() => {
+		setAttributes({ height: localHeight });
+	}, [localHeight]);
+
 	function setMinFontSize(fontSize) {
 		props.setAttributes({ minFontSize: fontSize });
 	}
@@ -72,12 +79,14 @@ function FitTextEdit(props) {
 					minHeight={200}
 					enable={{ bottom: true, right: false }}
 					onResizeStop={(event, direction, elt, delta) => {
-						setHeight(height + delta.height);
+						setLocalHeight(
+							(prevHeight) => prevHeight + delta.height
+						);
 					}}
 				>
 					<BentoFitText
 						className="bento-fit-text"
-						style={{ height }}
+						style={{ height: localHeight }}
 						minFontSize={parseInt(
 							minFontSize.replace('px', ''),
 							10

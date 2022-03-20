@@ -18,6 +18,10 @@
 		"maxFontSize": {
 			"type": "string",
 			"default": "400px"
+		},
+		"height": {
+			"type": "number",
+			"default": 200
 		}
 	},
 	"supports": {
