@@ -18,7 +18,7 @@ class Fit_Text_Block_Type {
 
 	// @todo Maybe these should be obtained from block.json directly?
 	const BLOCK_STYLE_HANDLE       = 'gutenberg-bento-fit-text-style';
-	const BLOCK_VIEW_SCRIPT_HANDLE = 'gutenberg-bento-fit-text-view-script';
+	const BLOCK_VIEW_SCRIPT_HANDLE = 'gutenberg-bento-fit-text-script';
 
 	/**
 	 * Calls the initialization function.
@@ -108,9 +108,7 @@ class Fit_Text_Block_Type {
 		$script = wp_scripts()->query( self::BLOCK_VIEW_SCRIPT_HANDLE );
 		if ( $script ) {
 			$script->deps = array_merge( $script->deps, array( self::BENTO_RUNTIME_SCRIPT_HANDLE, self::BENTO_FIT_TEXT_SCRIPT_HANDLE ) );
-			$script->args = 1;
 		}
-
 	}
 
 	/**
@@ -143,10 +141,8 @@ class Fit_Text_Block_Type {
 			isset( $tags['bento-fit-text'] ) ? $tags['bento-fit-text'] : array(),
 			array_fill_keys(
 				array(
-					'class',
-					'auto-advance',
-					'loop',
-					'snap',
+					'min-font-size',
+					'max-font-size',
 				),
 				true
 			)
