@@ -36,6 +36,25 @@
  * limitations under the License.
  */
 
-require_once __DIR__ . '/inc/namespace.php';
+// Define WP_BOOTSTRAP_BLOCKS_PLUGIN_FILE.
+if ( ! defined( 'GUTENBERG_BENTO_BLOCKS_PLUGIN_FILE' ) ) {
+	define( 'GUTENBERG_BENTO_BLOCKS_PLUGIN_FILE', __FILE__ );
+}
 
-Google\Gutenberg_Bento\boostrap();
+if ( ! defined( 'GUTENBERG_BENTO_BLOCKS_ABSPATH' ) ) {
+	define( 'GUTENBERG_BENTO_BLOCKS_ABSPATH', trailingslashit( dirname( GUTENBERG_BENTO_BLOCKS_PLUGIN_FILE ) ) );
+}
+
+if ( ! defined( 'GUTENBERG_BENTO_BLOCKS_ASSETSURL' ) ) {
+	define( 'GUTENBERG_BENTO_BLOCKS_ASSETSURL', esc_url( trailingslashit( plugins_url( '/build/', GUTENBERG_BENTO_BLOCKS_PLUGIN_FILE ) ) ) );
+}
+
+
+
+require_once __DIR__ . '/inc/class-gutenberg-bento-blocks.php';
+Google\Gutenberg_Bento\Blocks::instance();
+
+
+// require_once __DIR__ . '/inc/namespace.php';
+// Google\Gutenberg_Bento\boostrap();
+
