@@ -1,0 +1,4 @@
+/* This CSS is used both on the frontend and in the editor. */
+bento-fit-text, .bento-fit-text {
+	min-height: 200px;
+}

@@ -15,6 +15,7 @@ class Blocks {
 	const COMPONENTS = array(
 		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/carousel/class-carousel-block-type.php' => Carousel_Block_Type::class,
 		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/date-countdown/class-date-countdown-block-type.php' => Date_Countdown_Block_Type::class,
+		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/fit-text/class-fit-text-block-type.php' => Fit_Text_Block_Type::class,
 	);
 
 	const BENTO_RUNTIME_SCRIPT_HANDLE = 'bento-runtime';
