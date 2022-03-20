@@ -1,0 +1,30 @@
+{
+	"apiVersion": 2,
+	"name": "gutenberg-bento/fit-text",
+	"title": "Fit Text",
+	"category": "media",
+	"description": "Fit text to its container.",
+	"keywords": ["text"],
+	"textdomain": "default",
+	"attributes": {
+		"fittedText": {
+			"type": "string",
+			"default": ""
+		},
+		"minFontSize": {
+			"type": "string",
+			"default": "100px"
+		},
+		"maxFontSize": {
+			"type": "string",
+			"default": "400px"
+		}
+	},
+	"supports": {
+		"align": true
+	},
+	"viewScript": "bento-fit-text",
+	"editorScript": "gutenberg-bento-fit-text-edit",
+	"editorStyle": "gutenberg-bento-fit-text-edit",
+	"style": "gutenberg-bento-fit-text"
+}
