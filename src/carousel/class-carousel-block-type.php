@@ -40,11 +40,6 @@ class Carousel_Block_Type {
 		add_filter( 'amp_content_sanitizers', array( $this, 'add_amp_content_sanitizer' ) );
 	}
 
-	public function filter_metadata_registration( $settings ) {
-		print_r( $settings );
-		return $settings;
-	}
-
 	/**
 	 * Registers the scripts and styles for Bento components.
 	 *
