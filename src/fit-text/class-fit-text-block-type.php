@@ -48,15 +48,13 @@ class Fit_Text_Block_Type {
 	 * @return void
 	 */
 	public function register_bento_assets() {
-
-		$src    = sprintf( 'https://cdn.ampproject.org/v0/bento-fit-text-%s.js', self::BENTO_FIT_TEXT_VERSION );
-		$script = wp_scripts()->query( self::BENTO_FIT_TEXT_SCRIPT_HANDLE );
-		if ( $script ) {
-			// Make sure that 1.0 (Bento) is used instead of 0.1 (latest).
-			$script->src = $src;
-		} else {
-			wp_register_script( self::BENTO_FIT_TEXT_SCRIPT_HANDLE, $src, array( self::BENTO_RUNTIME_SCRIPT_HANDLE ), null, true );
-		}
+		wp_register_script(
+			self::BENTO_FIT_TEXT_SCRIPT_HANDLE,
+			sprintf( 'https://cdn.ampproject.org/v0/bento-fit-text-%s.js', self::BENTO_FIT_TEXT_VERSION ),
+			array( self::BENTO_RUNTIME_SCRIPT_HANDLE ),
+			null,
+			true
+		);
 
 		// At the moment the AMP plugin does not register styles for Bento components, but this could change with <https://github.com/ampproject/amp-wp/pull/6353>.
 		$src   = sprintf( 'https://cdn.ampproject.org/v0/bento-fit-text-%s.css', self::BENTO_FIT_TEXT_VERSION );
