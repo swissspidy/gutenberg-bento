@@ -20,19 +20,6 @@ class Carousel_Block_Type {
 	const BLOCK_VIEW_SCRIPT_HANDLE = 'gutenberg-bento-carousel-view';
 
 	/**
-	 * Name of block type including namespace.
-	 *
-	 * @var string
-	 */
-	protected $name = '';
-
-	/**
-	 * Carousel Block Type constructor.
-	 */
-	public function __construct() {
-	}
-
-	/**
 	 * Calls the initialization function.
 	 *
 	 * @return void
@@ -51,7 +38,6 @@ class Carousel_Block_Type {
 		add_action( 'enqueue_block_assets', array( $this, 'unregister_asset_dependencies_on_amp' ), 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 		add_filter( 'wp_kses_allowed_html', array( $this, 'filter_kses_allowed_html' ) );
 		add_filter( 'amp_content_sanitizers', array( $this, 'add_amp_content_sanitizer' ) );
-
 	}
 
 	/**
@@ -82,7 +68,6 @@ class Carousel_Block_Type {
 		} else {
 			wp_register_style( self::BENTO_BASE_CAROUSEL_SCRIPT_HANDLE, $src, array(), null, false );
 		}
-
 
 		/**
 		 * Filters whether to enqueue self-hosted Bento components instead of using the CDN.
