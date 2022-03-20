@@ -2,10 +2,10 @@
 /**
  * Main plugin functionality.
  *
- * @package   Google\Gutenberg_Bento
+ * @package   Gutenberg_Bento
  */
 
-namespace Google\Gutenberg_Bento;
+namespace Gutenberg_Bento;
 
 /**
  * Class Date_Countdown_Block_Type

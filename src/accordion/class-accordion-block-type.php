@@ -2,10 +2,10 @@
 /**
  * Bento Accordion component integration.
  *
- * @package Google\Gutenberg_Bento
+ * @package Gutenberg_Bento
  */
 
-namespace Google\Gutenberg_Bento;
+namespace Gutenberg_Bento;
 
 /**
  * Class Accordion_Block_Type

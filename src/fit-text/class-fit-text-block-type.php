@@ -2,10 +2,10 @@
 /**
  * Bent Fit Text component integration.
  *
- * @package   Google\Gutenberg_Bento
+ * @package   Gutenberg_Bento
  */
 
-namespace Google\Gutenberg_Bento;
+namespace Gutenberg_Bento;
 
 /**
  * Class Fit_Text_Block_type

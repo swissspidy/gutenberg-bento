@@ -1,6 +1,6 @@
 <?php
 
-namespace Google\Gutenberg_Bento\Tests;
+namespace Gutenberg_Bento\Tests;
 
 use WP_UnitTestCase;
 

@@ -1,5 +1,5 @@
 {
-	"name": "swissspidy/gutenberg-bento",
+	"name": "bento-wordpress/gutenberg-bento",
 	"type": "wordpress-plugin",
 	"description": "An exploratory plugin for using Bento components in Gutenberg",
 	"license": "Apache-2.0",

@@ -15,10 +15,9 @@ With Bento this is no longer a problem.
 
 ## About this Plugin
 
-This demo plugin shows how `<bento-base-carousel>` can be used to display an image carousel on the frontend, with the `BentoBaseCarousel` React component doing the same in the editor,
-removing the need for any duplication.
+This plugin enhances existing core blocks and creates new blocks for using Bento components.
 
-Thanks to the encapsulation advantages of custom elements like `<bento-base-carousel>`, other WordPress plugins and themes can't interfere with its look & feel.
+Thanks to the encapsulation advantages of custom elements like `<bento-base-carousel>`, other WordPress plugins and themes can't interfere with their look & feel.
 
 While this plugin is only a proof-of-concept, it gives a glimpse at the possibilities of using Bento for Gutenberg block development, and the advantages that brings:
 
@@ -26,6 +25,39 @@ While this plugin is only a proof-of-concept, it gives a glimpse at the possibil
 2. Reduced development and maintenance costs
 3. Ensured feature parity between editor and frontend
 4. No interference by other plugins and themes, thanks to web components.
+
+Specifically:
+
+### Accordion Block
+
+Uses [Bento Accordion](https://bentojs.dev/components/bento-accordion/) with `InnerBlocks`.
+
+### Carousel Block
+
+Uses [Bento Carousel](https://bentojs.dev/components/bento-carousel/) with `InnerBlocks`.
+
+The `<BentoBaseCarousel>` carousel component in the editor:
+
+![Carousel in the editor](https://user-images.githubusercontent.com/841956/127545477-478adba4-c8e1-4a69-b3da-a58dabf375a7.png)
+
+The same carousel powered by `<bento-base-carousel>` on the frontend:
+
+![Carousel on the frontend](https://user-images.githubusercontent.com/841956/127545504-9fa725b6-a52f-43c1-9da6-af4f4b0a9c69.png)
+
+### Date Countdown Block
+
+Uses [Bento Date Countdown](https://bentojs.dev/components/bento-date-countdown/) to displays a countdown sequence to a specified date.
+
+![Countdown in the Editor](https://user-images.githubusercontent.com/841956/159172372-7b4db27f-5237-438f-b0db-1475bb5e6eb5.png)
+![Countdown on the Frontend](https://user-images.githubusercontent.com/841956/159170942-831605af-12d0-4b85-9e18-700be4817009.png)
+
+### Fit Text Block
+
+### Lightbox Gallery
+
+![Toggle in the Editor](https://user-images.githubusercontent.com/841956/159158387-f2da1f97-4859-448b-b112-896eb16ddb00.png)
+
+[Demo video](https://user-images.githubusercontent.com/841956/159156776-345f13a5-ea05-4297-af3c-6b8acc50742a.mp4)
 
 ### AMP
 
@@ -37,24 +69,6 @@ When using the official [AMP WordPress plugin](https://wordpress.org/plugins/amp
 and use `amp-bind` (`on=""`) where custom functionality like going to the next/previous slide is needed.
 
 This plugin makes use of exactly that to give you a better understanding of how this works.
-
-### File Structure
-
-* `edit.js` - only used in the editor.
-* `edit.css` - only used in the editor
-* `carousel.view.js` - only used on the frontend.
-* `view.css` - used both on the frontend and in the editor.
-* `bento-base-carousel.js` - used when wanting to self-host the Bento scripts and styles.
-
-## Screenshots
-
-The `<BentoBaseCarousel>` carousel component in the editor:
-
-![Carousel in the editor](https://user-images.githubusercontent.com/841956/127545477-478adba4-c8e1-4a69-b3da-a58dabf375a7.png)
-
-The same carousel powered by `<bento-base-carousel>` on the frontend:
-
-![Carousel on the frontend](https://user-images.githubusercontent.com/841956/127545504-9fa725b6-a52f-43c1-9da6-af4f4b0a9c69.png)
 
 ## Getting Started
 
@@ -68,7 +82,7 @@ To set up WordPress locally, you can use something like [Local](https://localwp.
 
 ## Known Issues
 
-* React warnings about incorrect DOM attributes / unrecognized props (ampproject/amphtml#35553)
+* Recent versions of Bento React components being broken (ampproject/amphtml#37919)
 * npm packages not shipping with CSS (ampproject/amphtml#35413)
 * Lack of type definitions (ampproject/amphtml#34206)
 * Lack of changelog / documentation
@@ -80,20 +94,20 @@ To set up WordPress locally, you can use something like [Local](https://localwp.
 One of the features of Bento is the use of the CDN for loading all JavaScript files and stylesheets.
 
 However, in some cases one might not want to use a CDN.
-If you prefer self-hosting the assets, you can use the `gutenberg_bento_self_host` filter to enqueue the scripts and styles bundled with the plugin.  
+If you prefer self-hosting the assets, you can use the `gutenberg_bento_self_host` filter to enqueue the scripts and styles bundled with the plugin.
 
-### Package Exports
+**Note:** this is not fully implemented yet; the scripts for self-hosting are not currently being built correctly.
 
-A Bento React component can be imported as follows:
+### Authors
 
-```js
-import { BaseCarousel } from '@bentoproject/base-carousel/react';
-```
+This project was built during the [CloudFest 2022 Hackathon](https://www.cloudfest.com/hackathon) by the following contributors:
 
-The component's `package.json` file has `exports` entries for both `import` (ESM) and `require` (CommonJS).
-This is supported by modern build tooling such as webpack v5.
+* [Alain Schlesser](https://github.com/schlessera)
+* [Pascal Birchler](https://github.com/swissspidy)
+* [Adam Zielinski](https://github.com/adamziel)
+* [Marcel Schmitz](https://github.com/schmitzoide)
+* [Greg Ziółkowski](https://github.com/gziolo)
+* [Héctor Prieto](https://github.com/priethor)
+* [Jessica Lyschik](https://github.com/luminuu)
 
-At the same time, the package contains a `react.js` file pointing to the CommonJS version.
-This is done to make the above import work in older build tooling software such as webpack v4.
-
-So with webpack v4, the above import actually references the `react.js` file and ends up importing the CommonJS version.
+It is based on an original early prototype built by [Pascal Birchler](https://github.com/swissspidy).
