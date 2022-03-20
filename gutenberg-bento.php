@@ -49,5 +49,5 @@ if ( ! defined( 'GUTENBERG_BENTO_BLOCKS_ASSETSURL' ) ) {
 	define( 'GUTENBERG_BENTO_BLOCKS_ASSETSURL', esc_url( trailingslashit( plugins_url( '/build/', GUTENBERG_BENTO_BLOCKS_PLUGIN_FILE ) ) ) );
 }
 
-require_once __DIR__ . '/inc/class-gutenberg-bento-blocks.php';
+require_once __DIR__ . '/inc/class-blocks.php';
 Google\Gutenberg_Bento\Blocks::instance();

@@ -1,10 +1,11 @@
 <?php
+/**
+ * Main plugin functionality.
+ *
+ * @package   Google\Gutenberg_Bento
+ */
 
 namespace Google\Gutenberg_Bento;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
 
 /**
  * Class Carousel_Block_type
