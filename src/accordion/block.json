@@ -1,0 +1,31 @@
+{
+	"apiVersion": 2,
+	"name": "gutenberg-bento/accordion",
+	"title": "Accordion",
+	"category": "design",
+	"description": "Displays content sections that can be collapsed and expanded.",
+	"keywords": ["sections"],
+	"textdomain": "gutenberg-bento",
+	"attributes": {
+		"id": {
+			"type": "number",
+			"source": "attribute",
+			"selector": "bento-accordion",
+			"attribute": "id"
+		},
+		"animate": {
+			"type": "boolean",
+			"default": false,
+			"source": "attribute",
+			"selector": "bento-accordion",
+			"attribute": "animate"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorStyle": "file:./index.css",
+	"style": "gutenberg-bento-carousel-view-style",
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js"
+}

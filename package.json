@@ -13,7 +13,7 @@
 	},
 	"homepage": "https://github.com/swissspidy/gutenberg-bento#readme",
 	"dependencies": {
-		"@bentoproject/accordion": "^1.2203041950.0",
+		"@bentoproject/accordion": "1.2112231523.2",
 		"@bentoproject/base-carousel": "1.2112231523.2",
 		"@bentoproject/date-countdown": "1.2112231523.2",
 		"@bentoproject/fit-text": "1.2112231523.2",
@@ -36,6 +36,7 @@
 	"scripts": {
 		"build": "wp-scripts build",
 		"format": "wp-scripts format",
+		"format:php": "composer format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"lint:md:docs": "wp-scripts lint-md-docs",
