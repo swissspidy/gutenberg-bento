@@ -12,13 +12,20 @@
 			"source": "attribute",
 			"selector": "bento-accordion",
 			"attribute": "id"
+		},
+		"animate": {
+			"type": "boolean",
+			"default": false,
+			"source": "attribute",
+			"selector": "bento-accordion",
+			"attribute": "animate"
 		}
 	},
 	"supports": {
 		"html": false
 	},
 	"editorStyle": "file:./index.css",
-	"style": "file:./view.css",
+	"style": "gutenberg-bento-carousel-view-style",
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./view.js"
 }

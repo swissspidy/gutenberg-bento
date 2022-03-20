@@ -3,10 +3,11 @@
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
-export default function save({ attributes: { id, title } }) {
+export default function save({ attributes: { expanded, id, title } }) {
 	return (
 		<section
 			{...useBlockProps.save({
+				expanded: expanded ? 'true' : undefined,
 				id,
 			})}
 		>

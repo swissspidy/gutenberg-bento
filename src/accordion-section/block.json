@@ -16,7 +16,14 @@
 		"title": {
 			"type": "string",
 			"source": "html",
-			"selector": ".wp-block-gutenberg-bento-accordion-section > h2"
+			"selector": "section > h2"
+		},
+		"expanded": {
+			"type": "boolean",
+			"default": false,
+			"source": "attribute",
+			"selector": "section",
+			"attribute": "expanded"
 		}
 	},
 	"supports": {
