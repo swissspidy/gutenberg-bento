@@ -22,10 +22,10 @@
 		}
 	},
 	"supports": {
+		"align": ["wide", "full"],
 		"html": false
 	},
 	"editorStyle": "file:./index.css",
-	"style": "gutenberg-bento-carousel-view-style",
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./view.js"
 }
