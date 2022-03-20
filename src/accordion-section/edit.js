@@ -16,7 +16,7 @@ import { __ } from '@wordpress/i18n';
 const TEMPLATE = [['core/paragraph', { content: 'Section content' }]];
 
 export default function Edit({
-	attributes: { animate, expanded, id, title },
+	attributes: { expanded, id, title },
 	setAttributes,
 }) {
 	const blockProps = useBlockProps();
