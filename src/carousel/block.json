@@ -43,8 +43,8 @@
 	"supports": {
 		"align": true
 	},
-	"viewScript": "file:../carousel.view.js",
-	"editorScript": "file:../carousel.js",
-	"editorStyle": "file:../carousel.css",
+	"viewScript": "file:./carousel.view.js",
+	"editorScript": "file:./carousel.js",
+	"editorStyle": "file:./carousel.css",
 	"style": ["file:./carousel.view.css", "bento-base-carousel"]
 }
