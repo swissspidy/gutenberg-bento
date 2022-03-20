@@ -12,8 +12,11 @@ import {
 	ToggleControl,
 	DateTimePicker,
 	SelectControl,
+	Button,
+	Dropdown, PanelRow,
 } from '@wordpress/components';
 import { CountdownContextProvider } from './context';
+import { useRef } from '@wordpress/element';
 
 function CountdownEdit(props) {
 	const { attributes, setAttributes } = props;
@@ -31,6 +34,8 @@ function CountdownEdit(props) {
 
 	const blockProps = useBlockProps();
 
+	const anchorRef = useRef();
+
 	return (
 		<>
 			<InspectorControls>
@@ -45,7 +50,7 @@ function CountdownEdit(props) {
 					/>
 					<SelectControl
 						label={__('Biggest Unit', 'gutenberg-bento')}
-						value={biggestUnit} // e.g: value = [ 'a', 'c' ]
+						value={biggestUnit}
 						onChange={(newValue) => {
 							setAttributes({ biggestUnit: newValue });
 						}}
@@ -76,13 +81,40 @@ function CountdownEdit(props) {
 						checked={'continue' === whenEnded}
 						onChange={toggleWhenEnded}
 					/>
-					<DateTimePicker
-						currentDate={new Date(dateTime)}
-						onChange={(newDate) =>
-							setAttributes({ dateTime: newDate })
-						}
-						is12Hour={true}
-					/>
+					<PanelRow ref={anchorRef}>
+						<span>{__('Publish', 'gutenberg-bento')}</span>
+						<Dropdown
+							popoverProps={{ anchorRef: anchorRef.current }}
+							position="bottom left"
+							contentClassName="date-countdown__dialog"
+							renderToggle={({ onToggle, isOpen }) => (
+								<>
+									<Button
+										className="edit-post-post-schedule__toggle"
+										onClick={onToggle}
+										aria-expanded={isOpen}
+										variant="tertiary"
+									>
+										{dateTime
+											? new Date(dateTime).toISOString()
+											: __(
+													'Choose date',
+													'gutenberg-bento'
+											  )}
+									</Button>
+								</>
+							)}
+							renderContent={() => (
+								<DateTimePicker
+									currentDate={dateTime}
+									onChange={(newDate) =>
+										setAttributes({ dateTime: newDate })
+									}
+									is12Hour={true}
+								/>
+							)}
+						/>
+					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<div {...blockProps}>
