@@ -1,25 +1,25 @@
-import { BentoBaseCarousel } from '@bentoproject/base-carousel/react';
-import '@bentoproject/base-carousel/styles.css';
+import { BentoBaseCarousel } from "@bentoproject/base-carousel/react";
+import "@bentoproject/base-carousel/styles.css";
 
-import { useEffect, useCallback, useRef } from '@wordpress/element';
+import { useEffect, useCallback, useRef } from "@wordpress/element";
 import {
 	MediaPlaceholder,
 	useBlockProps,
 	store as blockEditorStore,
 	RichText,
 	InspectorControls,
-} from '@wordpress/block-editor';
-import { __, isRTL } from '@wordpress/i18n';
-import { Button, PanelBody, ToggleControl } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
-import { View } from '@wordpress/primitives';
-import { getBlobByURL, isBlobURL, revokeBlobURL } from '@wordpress/blob';
+} from "@wordpress/block-editor";
+import { __, isRTL } from "@wordpress/i18n";
+import { Button, PanelBody, ToggleControl } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
+import { View } from "@wordpress/primitives";
+import { getBlobByURL, isBlobURL, revokeBlobURL } from "@wordpress/blob";
 
-const ALLOWED_MEDIA_TYPES = ['image'];
+const ALLOWED_MEDIA_TYPES = ["image"];
 
 const PLACEHOLDER_TEXT = __(
-	'Drag images, upload new ones or select files from your library.',
-	'gutenberg-bento'
+	"Drag images, upload new ones or select files from your library.",
+	"gutenberg-bento"
 );
 
 function CarouselEdit(props) {
@@ -33,7 +33,7 @@ function CarouselEdit(props) {
 			mediaUpload: settings.mediaUpload,
 			wasBlockJustInserted: select(blockEditorStore).wasBlockJustInserted(
 				clientId,
-				'inserter_menu'
+				"inserter_menu"
 			),
 		};
 	});
@@ -98,7 +98,7 @@ function CarouselEdit(props) {
 			mediaUpload({
 				filesList,
 				onFileChange: onSelectImages,
-				allowedTypes: ['image'],
+				allowedTypes: ["image"],
 			});
 		}
 	}, []);
@@ -109,7 +109,7 @@ function CarouselEdit(props) {
 			isAppender={hasImages}
 			disableMediaButtons={hasImages && !isSelected}
 			labels={{
-				title: !hasImages && __('Carousel', 'gutenberg-bento'),
+				title: !hasImages && __("Carousel", "gutenberg-bento"),
 				instructions: !hasImages && PLACEHOLDER_TEXT,
 			}}
 			onSelect={onSelectImages}
@@ -119,9 +119,7 @@ function CarouselEdit(props) {
 			value={hasImageIds ? images : {}}
 			notices={hasImages ? undefined : noticeUI}
 			onFocus={onFocus}
-			autoOpenMediaUpload={
-				!hasImages && isSelected && wasBlockJustInserted
-			}
+			autoOpenMediaUpload={!hasImages && isSelected && wasBlockJustInserted}
 		/>
 	);
 
@@ -148,19 +146,19 @@ function CarouselEdit(props) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Carousel Settings', 'gutenberg-bento')}>
+				<PanelBody title={__("Carousel Settings", "gutenberg-bento")}>
 					<ToggleControl
-						label={__('Auto Advance', 'gutenberg-bento')}
+						label={__("Auto Advance", "gutenberg-bento")}
 						checked={!!autoAdvance}
 						onChange={toggleAutoAdvance}
 					/>
 					<ToggleControl
-						label={__('Loop', 'gutenberg-bento')}
+						label={__("Loop", "gutenberg-bento")}
 						checked={!!loop}
 						onChange={toggleLoop}
 					/>
 					<ToggleControl
-						label={__('Snap', 'gutenberg-bento')}
+						label={__("Snap", "gutenberg-bento")}
 						checked={!!snap}
 						onChange={toggleSnap}
 					/>
@@ -170,7 +168,7 @@ function CarouselEdit(props) {
 				<div className="gutenberg-bento-carousel-wrapper">
 					<BentoBaseCarousel
 						ref={carouselRef}
-						dir={isRTL() ? 'rtl' : 'ltr'}
+						dir={isRTL() ? "rtl" : "ltr"}
 						autoAdvance={autoAdvance}
 						loop={loop}
 						snap={snap}
@@ -185,9 +183,7 @@ function CarouselEdit(props) {
 									data-id={image.id}
 									data-full-url={image.fullUrl}
 									data-link={image.link}
-									className={
-										image.id ? `wp-image-${image.id}` : null
-									}
+									className={image.id ? `wp-image-${image.id}` : null}
 								/>
 							);
 
@@ -217,14 +213,14 @@ function CarouselEdit(props) {
 						className="gutenberg-bento-carousel-buttons__prev"
 						onClick={goToPreviousSlide}
 					>
-						{__('Previous', 'gutenberg-bento')}
+						{__("Previous", "gutenberg-bento")}
 					</Button>
 					<Button
 						isSecondary
 						className="gutenberg-bento-carousel-buttons__next"
 						onClick={goToNextSlide}
 					>
-						{__('Next', 'gutenberg-bento')}
+						{__("Next", "gutenberg-bento")}
 					</Button>
 				</div>
 			</figure>
