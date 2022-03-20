@@ -13,7 +13,8 @@ import {
 	DateTimePicker,
 	SelectControl,
 	Button,
-	Dropdown, PanelRow,
+	Dropdown,
+	PanelRow,
 } from '@wordpress/components';
 import { CountdownContextProvider } from './context';
 import { useRef } from '@wordpress/element';

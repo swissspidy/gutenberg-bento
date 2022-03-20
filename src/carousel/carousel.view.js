@@ -4,7 +4,6 @@ import './view.css';
 
 (async () => {
 	await window.customElements.whenDefined('bento-base-carousel');
-
 	const carousels = document.querySelectorAll(
 		'.wp-block-gutenberg-bento-carousel'
 	);

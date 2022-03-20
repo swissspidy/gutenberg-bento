@@ -2,7 +2,7 @@
 	"apiVersion": 2,
 	"name": "gutenberg-bento/date-countdown",
 	"title": "Date Countdown",
-	"category": "media",
+	"category": "gutenberg-bento-blocks",
 	"description": "This is the final countdown.",
 	"keywords": ["date", "countdown", "timer"],
 	"textdomain": "gutenberg-bento",
@@ -27,8 +27,8 @@
 	"supports": {
 		"align": true
 	},
-	"editorScript": "gutenberg-bento-date-countdown-edit",
-	"editorStyle": "gutenberg-bento-date-countdown-edit",
+	"editorScript": "file:./date-countdown.js",
+	"editorStyle": "file:./date-countdown.css",
 	"style": "bento-date-countdown",
 	"viewScript": "bento-date-countdown"
 }
