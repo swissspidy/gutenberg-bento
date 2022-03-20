@@ -14,8 +14,8 @@ export const settings = {
 	example: {
 		attributes: {
 			fittedText: '',
-			minFontSize: "10px",
-			maxFontSize: "40px"
+			minFontSize: '10px',
+			maxFontSize: '40px',
 		},
 	},
 	edit,

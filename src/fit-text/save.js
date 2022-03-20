@@ -10,10 +10,12 @@ export default function save({ attributes }) {
 
 	return (
 		<bento-fit-text
-			{...useBlockProps.save() }
-			className={ className }
-			min-font-size={ parseInt( minFontSize.replace( 'px', '' ), 10 ) }
-			max-font-size={ parseInt( maxFontSize.replace( 'px', '' ), 10 ) }
-		>{ fittedText }</bento-fit-text>
+			{...useBlockProps.save()}
+			className={className}
+			min-font-size={parseInt(minFontSize.replace('px', ''), 10)}
+			max-font-size={parseInt(maxFontSize.replace('px', ''), 10)}
+		>
+			{fittedText}
+		</bento-fit-text>
 	);
 }
