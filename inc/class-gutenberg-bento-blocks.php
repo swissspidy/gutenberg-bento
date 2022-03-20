@@ -25,20 +25,6 @@ class Blocks {
 	protected static $instance = null;
 
 	/**
-	 * The plugin version number.
-	 *
-	 * @var string
-	 */
-	public static $version = '0.0.1';
-
-	/**
-	 * The plugin token.
-	 *
-	 * @var string
-	 */
-	public $token = 'gutenberg-bento';
-
-	/**
 	 * Gutenberg_Bento constructor.
 	 */
 	public function __construct() {
@@ -56,16 +42,13 @@ class Blocks {
 		foreach ( self::COMPONENTS as $filepath => $classname ) {
 			require_once $filepath;
 		}
-
 	}
 
 	/**
 	 * Initializes hooks.
 	 */
 	protected function init_hooks() {
-
 		add_action( 'init', array( $this, 'register_bento_assets' ) );
-
 	}
 
 	/**
@@ -116,7 +99,7 @@ class Blocks {
 			$block_categories,
 			array(
 				array(
-					'slug' => 'gutenberg-bento-blocks',
+					'slug'  => 'gutenberg-bento-blocks',
 					'title' => __( 'Bento Blocks', 'gutenberg-bento' ),
 				),
 			)
@@ -127,7 +110,7 @@ class Blocks {
 	 * Load plugin textdomain
 	 */
 	public function load_plugin_textdomain() {
-		$domain = 'gutenberg-bento'; // textdomain can't be stored in class variable since it must be a single string literal
+		$domain = 'gutenberg-bento';
 		load_plugin_textdomain( $domain, false, $this->languages_dir );
 	}
 

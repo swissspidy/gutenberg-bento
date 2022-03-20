@@ -241,5 +241,4 @@ class Carousel_Block_Type {
 
 		return $sanitizers;
 	}
-
 }
