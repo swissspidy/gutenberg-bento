@@ -121,7 +121,7 @@ class Carousel_Block_Type {
 		wp_register_style( self::BLOCK_STYLE_HANDLE, GUTENBERG_BENTO_BLOCKS_ASSETSURL . '/carousel.view.css', array( self::BENTO_BASE_CAROUSEL_SCRIPT_HANDLE ), $view_version );
 
 		// Used only on frontend.
-		wp_register_script( self::BLOCK_VIEW_SCRIPT_HANDLE, GUTENBERG_BENTO_BLOCKS_ASSETSURL . '/carousel.view.js', $view_dependencies, $view_version );
+		wp_register_script( self::BLOCK_VIEW_SCRIPT_HANDLE, GUTENBERG_BENTO_BLOCKS_ASSETSURL . '/carousel.view.js', $view_dependencies, $view_version, true );
 	}
 
 	/**
