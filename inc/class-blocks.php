@@ -49,7 +49,17 @@ class Blocks {
 	 * Initializes hooks.
 	 */
 	protected function init_hooks() {
+
 		add_action( 'init', array( $this, 'register_bento_assets' ) );
+
+		// Register custom block category.
+		if ( class_exists( 'WP_Block_Editor_Context' ) ) {
+			// Class WP_Block_Editor_Context does only exist in WP >= 5.8.
+			add_filter( 'block_categories_all', array( $this, 'register_custom_block_category' ), 10, 2 );
+		} else {
+			add_filter( 'block_categories', array( $this, 'register_custom_block_category_old' ), 10, 2 );
+		}
+
 	}
 
 	/**

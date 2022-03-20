@@ -2,7 +2,7 @@
 	"apiVersion": 2,
 	"name": "gutenberg-bento/carousel",
 	"title": "Carousel",
-	"category": "media",
+	"category": "gutenberg-bento-blocks",
 	"description": "Display multiple images in a carousel.",
 	"keywords": ["images", "photos"],
 	"textdomain": "default",
