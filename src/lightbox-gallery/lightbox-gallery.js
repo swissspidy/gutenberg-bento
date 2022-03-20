@@ -1,11 +1,6 @@
 import { addFilter } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-	Panel,
-	PanelBody,
-	PanelRow,
-	ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, PanelRow, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**

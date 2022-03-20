@@ -10,6 +10,7 @@ import {
 import { __ } from '@wordpress/i18n';
 import {
 	PanelBody,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalUnitControl as UnitControl,
 	ResizableBox,
 } from '@wordpress/components';
@@ -21,7 +22,6 @@ function FitTextEdit(props) {
 
 	const [height, setHeight] = useState(200);
 	function setMinFontSize(fontSize) {
-		console.log(fontSize);
 		props.setAttributes({ minFontSize: fontSize });
 	}
 
