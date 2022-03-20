@@ -23,8 +23,7 @@
 	"supports": {
 		"align": true
 	},
-	"viewScript": "bento-fit-text",
-	"editorScript": "gutenberg-bento-fit-text-edit",
-	"editorStyle": "gutenberg-bento-fit-text-edit",
-	"style": "gutenberg-bento-fit-text"
+	"editorScript": "file:./fit-text.js",
+	"editorStyle": "file:./view.css",
+	"style": ["file:./view.css", "bento-fit-text"]
 }

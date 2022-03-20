@@ -37,7 +37,6 @@ class Fit_Text_Block_Type {
 		add_action( 'init', array( $this, 'register_fit_text_block_type' ) );
 		add_action( 'enqueue_block_assets', array( $this, 'unregister_asset_dependencies_on_amp' ), 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 		add_filter( 'wp_kses_allowed_html', array( $this, 'filter_kses_allowed_html' ) );
-		add_filter( 'amp_content_sanitizers', array( $this, 'add_amp_content_sanitizer' ) );
 	}
 
 	/**
