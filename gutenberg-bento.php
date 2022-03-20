@@ -37,5 +37,7 @@
  */
 
 require_once __DIR__ . '/inc/namespace.php';
+require_once __DIR__ . '/inc/date-countdown/namespace.php';
 
 Google\Gutenberg_Bento\boostrap();
+Google\Gutenberg_Bento\Date_Countdown\boostrap();
