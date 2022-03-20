@@ -11,13 +11,11 @@ namespace Google\Gutenberg_Bento;
  * Class Carousel_Block_type
  */
 class Carousel_Block_Type {
-
 	const BENTO_RUNTIME_SCRIPT_HANDLE       = 'bento-runtime';
 	const BENTO_BASE_CAROUSEL_SCRIPT_HANDLE = 'bento-base-carousel';
 	const BENTO_BASE_CAROUSEL_VERSION       = '1.0';
 
 	// @todo Maybe these should be obtained from block.json directly?
-	const BLOCK_STYLE_HANDLE       = 'gutenberg-bento-carousel-style';
 	const BLOCK_VIEW_SCRIPT_HANDLE = 'gutenberg-bento-carousel-view-script';
 
 	/**
@@ -35,9 +33,7 @@ class Carousel_Block_Type {
 	protected function init_hooks() {
 		add_action( 'init', array( $this, 'register_bento_assets' ) );
 		add_action( 'init', array( $this, 'register_carousel_block_type' ) );
-		add_action( 'enqueue_block_assets', array( $this, 'unregister_asset_dependencies_on_amp' ), 9 ); // The 9 to before wp_enqueue_registered_block_scripts_and_styles().
 		add_filter( 'wp_kses_allowed_html', array( $this, 'filter_kses_allowed_html' ) );
-		add_filter( 'amp_content_sanitizers', array( $this, 'add_amp_content_sanitizer' ) );
 	}
 
 	/**
@@ -130,7 +126,7 @@ class Carousel_Block_Type {
 	public function render_carousel_block( $attributes, $content ) {
 		// TODO: Check if we still need this.
 		// Note this is a temporary measure until Gutenberg 11 is live. See <https://github.com/WordPress/gutenberg/pull/32977>.
-		if ( ! is_admin() && ! $this->is_amp() ) {
+		if ( ! is_admin() ) {
 			wp_enqueue_script( self::BLOCK_VIEW_SCRIPT_HANDLE );
 		}
 
@@ -139,23 +135,6 @@ class Carousel_Block_Type {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * When on AMP pages, prevent the view script and other scripts/styles from being printed. These are handled by AMP.
-	 *
-	 * @return void
-	 */
-	public function unregister_asset_dependencies_on_amp() {
-		// Note the is_amp() function can only be called at or after the `wp` action.
-		if ( ! $this->is_amp() ) {
-			return;
-		}
-
-		$style = wp_styles()->query( self::BLOCK_STYLE_HANDLE );
-		if ( $style ) {
-			$style->deps = array_diff( $style->deps, array( self::BENTO_BASE_CAROUSEL_SCRIPT_HANDLE ) );
-		}
 	}
 
 	/**
@@ -180,31 +159,5 @@ class Carousel_Block_Type {
 			)
 		);
 		return $tags;
-	}
-
-	/**
-	 * Determines whether the current request is for an AMP document.
-	 *
-	 * @return bool Whether the current request is for an AMP document or not.
-	 */
-	public function is_amp() {
-		return ( function_exists( 'amp_is_request' ) && amp_is_request() );
-	}
-
-	/**
-	 * Adds a new AMP sanitizer for the <bento-base-carousel> to ensure validity.
-	 *
-	 * @param array $sanitizers List of sanitizers.
-	 *
-	 * @return array Filtered list of sanitizers.
-	 */
-	public function add_amp_content_sanitizer( $sanitizers ) {
-		if ( class_exists( \AMP_Base_Sanitizer::class ) ) {
-			require_once __DIR__ . '/class-amp-carousel-sanitizer.php';
-
-			$sanitizers[ AMP_Carousel_Sanitizer::class ] = array();
-		}
-
-		return $sanitizers;
 	}
 }
