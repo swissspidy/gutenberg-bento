@@ -14,6 +14,7 @@ class Blocks {
 
 	const COMPONENTS = array(
 		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/carousel/class-carousel-block-type.php' => Carousel_Block_Type::class,
+		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/date-countdown/class-date-countdown-block-type.php' => Date_Countdown_Block_Type::class,
 		GUTENBERG_BENTO_BLOCKS_ABSPATH . '/src/fit-text/class-fit-text-block-type.php' => Fit_Text_Block_Type::class,
 	);
 
@@ -135,14 +136,13 @@ class Blocks {
 			$block_type = new $classname();
 			$block_type->register();
 		}
-
 	}
 
 	/**
 	 * Main Gutenberg_Bento_Blocks Instance
 	 * Ensures only one instance of Gutenberg_Bento_Blocks is loaded or can be loaded.
 	 *
-	 * @return Gutenberg_Bento_Blocks Plugin instance
+	 * @return Blocks Plugin instance
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {

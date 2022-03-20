@@ -1,0 +1,34 @@
+{
+	"apiVersion": 2,
+	"name": "gutenberg-bento/date-countdown",
+	"title": "Date Countdown",
+	"category": "gutenberg-bento-blocks",
+	"description": "This is the final countdown.",
+	"keywords": ["date", "countdown", "timer"],
+	"textdomain": "gutenberg-bento",
+	"attributes": {
+		"dateTime": {
+			"type": "string",
+			"default": false
+		},
+		"whenEnded": {
+			"type": "string",
+			"default": "stop"
+		},
+		"biggestUnit": {
+			"type": "string",
+			"default": "days"
+		},
+		"countUp": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": true
+	},
+	"editorScript": "file:./date-countdown.js",
+	"editorStyle": "file:./date-countdown.css",
+	"style": "bento-date-countdown",
+	"viewScript": "bento-date-countdown"
+}
