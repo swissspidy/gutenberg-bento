@@ -1,0 +1,26 @@
+{
+	"apiVersion": 2,
+	"name": "gutenberg-bento/accordion-section",
+	"title": "Accordion Section",
+	"parent": ["gutenberg-bento/accordion"],
+	"category": "design",
+	"description": "Displays content section that can be collapsed and expanded.",
+	"textdomain": "gutenberg-bento",
+	"attributes": {
+		"id": {
+			"type": "number",
+			"source": "attribute",
+			"selector": "section",
+			"attribute": "id"
+		},
+		"title": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-gutenberg-bento-accordion-section > h2"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js"
+}
