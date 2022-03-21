@@ -8,7 +8,7 @@ import '@bentoproject/base-carousel/styles.css';
 /**
  * WordPress dependencies
  */
-import { useRef } from '@wordpress/element';
+import { useRef, render, useEffect, useState } from '@wordpress/element';
 import {
 	BlockControls,
 	MediaReplaceFlow,
@@ -80,6 +80,14 @@ function CarouselEdit(props) {
 		},
 		[clientId]
 	);
+	const [hasGutenbergPatch, setHasGutenbergPatch] = useState(null);
+	useEffect(() => {
+		const target = document.createElement('div');
+		render(<div {...innerBlocksProps} />, target);
+		setTimeout(() => {
+			setHasGutenbergPatch(target.innerHTML.includes('class="carousel-'));
+		});
+	}, []);
 
 	const hasImages = innerBlocks.length > 0;
 	const imagesIds = hasImages
@@ -191,6 +199,33 @@ function CarouselEdit(props) {
 	};
 
 	const blockProps = useBlockProps();
+
+	if (hasGutenbergPatch === false) {
+		return (
+			<div className="components-placeholder block-editor-media-placeholder is-large">
+				<div className="components-placeholder__label">
+					{__('Bento Carousel', 'gutenberg-bento')}
+				</div>
+				<fieldset className="components-placeholder__fieldset">
+					<legend className="components-placeholder__instructions">
+						{__(
+							'Using this component requires a patched Gutenberg version. Please ' +
+								'apply the following PR and retry: ',
+							'gutenberg-bento'
+						)}
+						<br />
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://github.com/WordPress/gutenberg/pull/39597"
+						>
+							https://github.com/WordPress/gutenberg/pull/39597
+						</a>
+					</legend>
+				</fieldset>
+			</div>
+		);
+	}
 
 	if (!innerBlocks.length) {
 		return (
