@@ -3,18 +3,21 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useContext } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { calendar as icon } from '@wordpress/icons';
 
 import edit from './edit';
 import save from './save';
 import { Context } from './context';
 
 registerBlockType('gutenberg-bento/date-countdown', {
+	icon,
 	category: 'gutenberg-bento-blocks',
 	edit,
 	save,
 });
 
 registerBlockType('gutenberg-bento/countdown-days', {
+	icon,
 	category: 'gutenberg-bento-blocks',
 	title: 'Days',
 	edit: function BlockEdit() {
@@ -27,6 +30,7 @@ registerBlockType('gutenberg-bento/countdown-days', {
 });
 
 registerBlockType('gutenberg-bento/countdown-hours', {
+	icon,
 	category: 'gutenberg-bento-blocks',
 	title: __('Hours', 'gutenberg-bento'),
 	edit: function BlockEdit() {
@@ -39,6 +43,7 @@ registerBlockType('gutenberg-bento/countdown-hours', {
 });
 
 registerBlockType('gutenberg-bento/countdown-minutes', {
+	icon,
 	category: 'gutenberg-bento-blocks',
 	title: __('Minutes', 'gutenberg-bento'),
 	edit: function BlockEdit() {
@@ -51,6 +56,7 @@ registerBlockType('gutenberg-bento/countdown-minutes', {
 });
 
 registerBlockType('gutenberg-bento/countdown-seconds', {
+	icon,
 	category: 'gutenberg-bento-blocks',
 	title: __('Seconds', 'gutenberg-bento'),
 	edit: function BlockEdit() {

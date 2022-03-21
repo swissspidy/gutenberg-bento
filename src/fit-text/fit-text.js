@@ -1,6 +1,7 @@
 /* This JS is only used in the editor. */
 
 import { registerBlockType } from '@wordpress/blocks';
+import { alignJustify as icon } from '@wordpress/icons';
 
 import metadata from './block.json';
 import edit from './edit';
@@ -11,6 +12,7 @@ const { name } = metadata;
 export { metadata, name };
 
 export const settings = {
+	icon,
 	example: {
 		attributes: {
 			fittedText: '',
