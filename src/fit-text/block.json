@@ -2,7 +2,7 @@
 	"apiVersion": 2,
 	"name": "gutenberg-bento/fit-text",
 	"title": "Fit Text",
-	"category": "media",
+	"category": "gutenberg-bento-blocks",
 	"description": "Fit text to its container.",
 	"keywords": ["text"],
 	"textdomain": "default",

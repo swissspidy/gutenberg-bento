@@ -3,7 +3,7 @@
 	"name": "gutenberg-bento/accordion-section",
 	"title": "Accordion Section",
 	"parent": ["gutenberg-bento/accordion"],
-	"category": "design",
+	"category": "gutenberg-bento-blocks",
 	"description": "Displays content section that can be collapsed and expanded.",
 	"textdomain": "gutenberg-bento",
 	"attributes": {

@@ -9,11 +9,13 @@ import save from './save';
 import { Context } from './context';
 
 registerBlockType('gutenberg-bento/date-countdown', {
+	category: 'gutenberg-bento-blocks',
 	edit,
 	save,
 });
 
 registerBlockType('gutenberg-bento/countdown-days', {
+	category: 'gutenberg-bento-blocks',
 	title: 'Days',
 	edit: function BlockEdit() {
 		const { dd } = useContext(Context);
@@ -25,6 +27,7 @@ registerBlockType('gutenberg-bento/countdown-days', {
 });
 
 registerBlockType('gutenberg-bento/countdown-hours', {
+	category: 'gutenberg-bento-blocks',
 	title: __('Hours', 'gutenberg-bento'),
 	edit: function BlockEdit() {
 		const { hh } = useContext(Context);
@@ -36,6 +39,7 @@ registerBlockType('gutenberg-bento/countdown-hours', {
 });
 
 registerBlockType('gutenberg-bento/countdown-minutes', {
+	category: 'gutenberg-bento-blocks',
 	title: __('Minutes', 'gutenberg-bento'),
 	edit: function BlockEdit() {
 		const { mm } = useContext(Context);
@@ -47,6 +51,7 @@ registerBlockType('gutenberg-bento/countdown-minutes', {
 });
 
 registerBlockType('gutenberg-bento/countdown-seconds', {
+	category: 'gutenberg-bento-blocks',
 	title: __('Seconds', 'gutenberg-bento'),
 	edit: function BlockEdit() {
 		const { ss } = useContext(Context);

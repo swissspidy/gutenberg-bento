@@ -2,7 +2,7 @@
 	"apiVersion": 2,
 	"name": "gutenberg-bento/accordion",
 	"title": "Accordion",
-	"category": "design",
+	"category": "gutenberg-bento-blocks",
 	"description": "Displays content sections that can be collapsed and expanded.",
 	"keywords": ["sections"],
 	"textdomain": "gutenberg-bento",
