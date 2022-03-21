@@ -20,7 +20,7 @@ import './edit.css';
 
 function FitTextEdit(props) {
 	const { attributes, setAttributes } = props;
-	const { fittedText, minFontSize, maxFontSize, height = 200 } = attributes;
+	const { fittedText, minFontSize, maxFontSize, height = 50 } = attributes;
 
 	const [localHeight, setLocalHeight] = useState(height);
 
@@ -76,7 +76,7 @@ function FitTextEdit(props) {
 			</InspectorControls>
 			<div {...blockProps}>
 				<ResizableBox
-					minHeight={200}
+					minHeight={50}
 					enable={{ bottom: true, right: false }}
 					onResizeStop={(event, direction, elt, delta) => {
 						setLocalHeight(

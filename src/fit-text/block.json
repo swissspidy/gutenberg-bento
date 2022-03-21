@@ -13,15 +13,15 @@
 		},
 		"minFontSize": {
 			"type": "string",
-			"default": "100px"
+			"default": "10px"
 		},
 		"maxFontSize": {
 			"type": "string",
-			"default": "400px"
+			"default": "200px"
 		},
 		"height": {
 			"type": "number",
-			"default": 200
+			"default": 50
 		}
 	},
 	"supports": {
