@@ -34,7 +34,9 @@
 		"@wordpress/scripts": "^22.2.1"
 	},
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "npm run build:blocks && npm run build:lightbox-gallery",
+		"build:blocks": "wp-scripts build",
+		"build:lightbox-gallery": "npx wp-scripts build src/lightbox-gallery/lightbox-gallery.js --output-path=tmp && mkdir -p build/lightbox-gallery && cp tmp/lightbox-* build/lightbox-gallery/ && rm -rf tmp",
 		"format": "wp-scripts format",
 		"format:php": "composer format",
 		"lint:css": "wp-scripts lint-style",

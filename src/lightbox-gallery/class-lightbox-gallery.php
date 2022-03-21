@@ -70,19 +70,19 @@ class Lightbox_Gallery {
 		$self_host = (bool) apply_filters( 'gutenberg_bento_self_host', false );
 
 		if ( $self_host ) {
-			$web_component_asset_file = plugin_dir_path( __DIR__ ) . 'build/bento-lightbox-gallery.asset.php';
+			$web_component_asset_file = plugin_dir_path( __DIR__ ) . 'build/lightbox-gallery/lightbox-gallery.asset.php';
 			$web_component_asset      = is_readable( $web_component_asset_file ) ? require $web_component_asset_file : array();
 			$web_component_version    = isset( $web_component_asset['version'] ) ? $web_component_asset['version'] : false;
 
 			$style = wp_styles()->query( self::BENTO_SCRIPT_HANDLE );
 			if ( $style ) {
-				$style->src = plugin_dir_url( __DIR__ ) . 'build/bento-lightbox-gallery.css';
+				$style->src = plugin_dir_url( __DIR__ ) . 'build/lightbox-gallery/bento-lightbox-gallery.css';
 				$style->ver = $web_component_version;
 			}
 
 			$script = wp_scripts()->query( self::BENTO_SCRIPT_HANDLE );
 			if ( $script ) {
-				$script->src  = plugin_dir_url( __DIR__ ) . 'build/bento-lightbox-gallery.js';
+				$script->src  = plugin_dir_url( __DIR__ ) . 'build/lightbox-gallery/bento-lightbox-gallery.js';
 				$script->ver  = $web_component_version;
 				$script->deps = array(); // bento.js runtime is not needed when self-hosting.
 			}
@@ -134,21 +134,15 @@ class Lightbox_Gallery {
 	 * @return void
 	 */
 	public function register_lightbox_gallery_assets() {
-		$edit_asset_file   = plugin_dir_path( __DIR__ ) . 'build/lightbox-gallery.asset.php';
+		$edit_asset_file   = plugin_dir_path( __DIR__ ) . 'build/lightbox-gallery/lightbox-gallery.asset.php';
 		$edit_asset        = is_readable( $edit_asset_file ) ? require $edit_asset_file : array();
 		$edit_version      = isset( $edit_asset['version'] ) ? $edit_asset['version'] : false;
 		$edit_dependencies = isset( $edit_asset['dependencies'] ) ? $edit_asset['dependencies'] : array();
 
 		// Both used only in editor.
-		wp_register_style(
-			'gutenberg-bento-lightbox-gallery-edit',
-			plugin_dir_url( dirname( __DIR__ ) ) . 'build/lightbox-gallery.css',
-			array(),
-			$edit_version
-		);
 		wp_register_script(
 			'gutenberg-bento-lightbox-gallery-edit',
-			plugin_dir_url( dirname( __DIR__ ) ) . 'build/lightbox-gallery.js',
+			plugin_dir_url( dirname( __DIR__ ) ) . 'build/lightbox-gallery/lightbox-gallery.js',
 			$edit_dependencies,
 			$edit_version,
 			true
@@ -171,7 +165,7 @@ class Lightbox_Gallery {
 			return $block_content;
 		}
 
-		if ( ! $block['attrs']['bentoLightbox'] ) {
+		if ( empty( $block['attrs']['bentoLightbox'] ) ) {
 			return $block_content;
 		}
 
