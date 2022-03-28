@@ -21,7 +21,7 @@
     "@wordpress/data": "^6.3.0",
     "@wordpress/element": "^4.0.0",
     "@wordpress/i18n": "^4.4.1",
-    "@wordpress/primitives": "^3.1.0"
+    "@wordpress/primitives": "^3.3.0"
   },
   "devDependencies": {
     "@wordpress/scripts": "^22.2.1"
