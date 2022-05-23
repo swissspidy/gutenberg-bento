@@ -16,7 +16,7 @@
     "@bentoproject/base-carousel": "1.2112231523.2",
     "@wordpress/blob": "^3.4.1",
     "@wordpress/block-editor": "^8.3.1",
-    "@wordpress/blocks": "^11.3.1",
+    "@wordpress/blocks": "^11.8.0",
     "@wordpress/components": "^19.6.1",
     "@wordpress/data": "^6.3.0",
     "@wordpress/element": "^4.0.0",
